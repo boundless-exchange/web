@@ -1,0 +1,31 @@
+#!/usr/bin/env ./node_modules/.bin/babel-node
+import * as http from 'http';
+import connect from 'connect';
+import devMiddleware from 'webpack-dev-middleware';
+import hotMiddleware from 'webpack-hot-middleware';
+import opener from 'opener';
+import webpack from 'webpack';
+
+import devConfig from '../webpack.config.development.babel';
+
+const compiler = webpack(devConfig);
+
+const app = connect();
+
+app.use(devMiddleware(compiler, {
+  noInfo: true,
+  stats: {
+    colors: true,
+  },
+}));
+
+app.use(hotMiddleware(compiler));
+
+const port = process.env.PORT || 3000;
+http.createServer(app).listen(port, error => {
+  if (error) {
+    console.error(error);
+    process.exit(1);
+  }
+  opener(`http://localhost:${port}`);
+});
