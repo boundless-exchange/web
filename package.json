@@ -1,0 +1,10 @@
+{
+  "name": "web",
+	"private": true,
+  "version": "0.0.0",
+  "description": "Boundless Exchange's web frontend",
+  "homepage": "https://github.com/boundless-exchange/web",
+  "bugs": "https://github.com/boundless-exchange/web/issues",
+  "license": "Apache-2.0",
+  "repository": "boundless-exchange/web"
+}
