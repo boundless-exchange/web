@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
+import HtmlPlugin from 'html-webpack-plugin';
 
 export default {
   devtool: 'cheap-module-eval-source-map',
@@ -11,11 +12,18 @@ export default {
   output: {
     path: path.join(__dirname, 'build', 'development'),
     filename: 'bundle.js',
-    publicPath: '/static/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new HtmlPlugin({
+      inject: false,
+      template: './src/index.html.ejs',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+      },
+    }),
   ],
   module: {
     loaders: [
