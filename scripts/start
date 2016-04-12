@@ -34,7 +34,15 @@ function startServer(port) {
       process.stderr.write(error);
       process.exit(1);
     }
-    opener(url);
+
+    // Ensure that the bundle builds before we attempt to open the page.
+    request(url, (requestError, response) => {
+      if (requestError) throw requestError;
+      if (response.statusCode !== 200) {
+        throw new Error(`Invalid webpack bundle`);
+      }
+      opener(url);
+    });
   });
 }
 
