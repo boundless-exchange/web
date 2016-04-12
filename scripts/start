@@ -17,7 +17,7 @@ function startServer(port) {
   const url = `http://localhost:${port}`;
 
   app.use(webpackDevMiddleware(compiler, {
-    // noInfo: true,
+    noInfo: true,
     stats: {
       colors: true,
     },
@@ -32,6 +32,7 @@ function startServer(port) {
   http.createServer(app).listen(port, error => {
     if (error) {
       process.stderr.write(error);
+      process.stderr.write('\n');
       process.exit(1);
     }
 
@@ -41,6 +42,7 @@ function startServer(port) {
       if (response.statusCode !== 200) {
         throw new Error(`Invalid webpack bundle`);
       }
+      process.stdout.write(`Dev server listening at ${url}\n`);
       opener(url);
     });
   });
