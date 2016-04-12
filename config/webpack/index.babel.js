@@ -6,16 +6,22 @@ import { current as config } from '..';
 
 export default {
   devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'babel-polyfill',
-    'webpack-hot-middleware/client',
-    path.join(config.rootDir, 'src', 'main.jsx'),
-  ],
+  entry: {
+    app: [
+      'babel-polyfill',
+      'webpack-hot-middleware/client',
+      path.join(config.rootDir, 'src', 'main.jsx'),
+    ],
+    vendor: [
+      'lodash',
+    ],
+  },
   output: {
     path: path.join(config.rootDir, 'build', 'development'),
     filename: 'bundle.js',
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlPlugin({
