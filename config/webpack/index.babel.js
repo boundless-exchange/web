@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
@@ -7,10 +8,10 @@ import { current as config } from '..';
 export const devtool = 'cheap-module-eval-source-map';
 
 export const entry = {
-  vendor: [
-    'webpack-hot-middleware/client',
+  vendor: _.compact([
+    config.watch && 'webpack-hot-middleware/client',
     path.join(config.srcDir, 'vendor.js'),
-  ],
+  ]),
   app: [
     path.join(config.srcDir, 'app.js'),
   ],
@@ -21,9 +22,9 @@ export const output = {
   filename: 'app.js',
 };
 
-export const plugins = [
+export const plugins = _.compact([
   new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-  new webpack.HotModuleReplacementPlugin(),
+  config.watch && new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
   new HtmlPlugin({
     inject: false,
@@ -33,7 +34,7 @@ export const plugins = [
       collapseWhitespace: true,
     },
   }),
-];
+]);
 
 export const module = {
   loaders: [
