@@ -9,7 +9,7 @@ import { current as config } from '..';
 // https://webpack.github.io/docs/configuration.html#output
 export const output = {
   path: config.buildDir,
-  filename: 'app-[hash].js',
+  filename: 'app-[chunkhash].js',
 };
 
 // https://webpack.github.io/docs/configuration.html#entry
@@ -48,7 +48,7 @@ export const plugins = _.compact([
   // https://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
   new webpack.NoErrorsPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js'),
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[chunkhash].js'),
   // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),
   // https://github.com/ampedandwired/html-webpack-plugin#configuration
