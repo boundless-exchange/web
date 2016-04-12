@@ -58,4 +58,4 @@ export const plugins = _.compact([
 ]);
 
 // https://webpack.github.io/docs/configuration.html#devtool
-export const devtool = 'cheap-module-eval-source-map';
+export const devtool = config.watch ? 'cheap-module-eval-source-map' : 'source-map';
