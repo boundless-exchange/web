@@ -19,7 +19,7 @@ export const entry = {
     path.join(config.srcDir, 'vendor.js'),
   ]),
   app: [
-    path.join(config.srcDir, 'app.js'),
+    path.join(config.srcDir, 'app.jsx'),
   ],
 };
 
