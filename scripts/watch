@@ -1,0 +1,10 @@
+#!/usr/bin/env babel-node
+import * as conservator from 'conservator';
+
+conservator.run(['./scripts/test:style'], ['{src,test}/**/*.{js,jsx}', '*.js']);
+conservator.run(['./scripts/test:unit'], [
+  'test/unit/**/*.js',
+  {'src/(**/*).{js,jsx}': 'test/unit/${1}.js'},
+]);
+
+conservator.start();

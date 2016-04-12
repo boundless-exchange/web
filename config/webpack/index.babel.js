@@ -2,15 +2,17 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
 
+import { current as config } from '..';
+
 export default {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client',
-    './src/main.jsx',
+    path.join(config.rootDir, 'src', 'main.jsx'),
   ],
   output: {
-    path: path.join(__dirname, 'build', 'development'),
+    path: path.join(config.rootDir, 'build', 'development'),
     filename: 'bundle.js',
   },
   plugins: [
@@ -18,7 +20,7 @@ export default {
     new webpack.NoErrorsPlugin(),
     new HtmlPlugin({
       inject: false,
-      template: './src/index.html.ejs',
+      template: path.join(config.rootDir, 'src', 'index.html.ejs'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -29,7 +31,7 @@ export default {
     loaders: [
       {
         loader: 'babel-loader',
-        include: path.join(__dirname, 'src'),
+        include: path.join(config.rootDir, 'src'),
         test: /\.jsx?$/,
       },
       {
