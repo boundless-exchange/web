@@ -21,6 +21,7 @@
     "eslint-plugin-import": "^1.4.0",
     "eslint-plugin-react": "^4.3.0",
     "html-webpack-plugin": "^2.15.0",
+    "lodash": "^4.10.0",
     "opener": "^1.4.1",
     "request": "^2.70.0",
     "webpack": "^1.12.15",
