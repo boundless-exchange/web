@@ -37,7 +37,7 @@ export const module = {
             transforms: [
               {
                 transform: 'react-transform-hmr',
-                imports: 'react',
+                imports: ['react'],
                 locals: ['module'],
               },
             ],
