@@ -12,10 +12,9 @@ plugins:
 - react
 
 settings:
-  # React Native's packager follows Node's package resolution approach.
   import/resolver:
     webpack:
-      config: webpack.config.production.babel.js
+      config: ./config/webpack/index.babel.js
   import/parser: babel-eslint
 
 parserOptions:
