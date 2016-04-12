@@ -11,20 +11,20 @@
     "start": "./scripts/start"
   },
   "dependencies": {
-    "babel-cli": "6.6.5",
-    "babel-eslint": "6.0.0-beta.6",
-    "babel-loader": "6.2.4",
-    "connect": "3.4.1",
-    "eslint": "2.4.0",
-    "eslint-import-resolver-webpack": "0.1.5",
-    "eslint-plugin-babel": "3.1.0",
-    "eslint-plugin-import": "1.2.0",
-    "eslint-plugin-react": "4.2.3",
-    "html-webpack-plugin": "2.10.0",
-    "opener": "1.4.1",
-    "request": "2.69.0",
-    "webpack": "1.12.14",
-    "webpack-dev-middleware": "1.5.1",
-    "webpack-hot-middleware": "2.10.0"
+    "babel-cli": "^6.7.5",
+    "babel-eslint": "^6.0.2",
+    "babel-loader": "^6.2.4",
+    "connect": "^3.4.1",
+    "eslint": "^2.7.0",
+    "eslint-import-resolver-webpack": "^0.2.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-import": "^1.4.0",
+    "eslint-plugin-react": "^4.3.0",
+    "html-webpack-plugin": "^2.15.0",
+    "opener": "^1.4.1",
+    "request": "^2.70.0",
+    "webpack": "^1.12.15",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }
