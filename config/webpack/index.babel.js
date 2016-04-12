@@ -52,7 +52,7 @@ export const plugins = _.compact([
   // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),
   // https://github.com/ampedandwired/html-webpack-plugin#configuration
-  new HtmlPlugin({
+  !config.watch && new HtmlPlugin({
     inject: false,
     template: path.join(config.srcDir, 'index.html.ejs'),
     minify: {
