@@ -30,11 +30,7 @@ function startServer(port) {
   });
 
   http.createServer(app).listen(port, error => {
-    if (error) {
-      process.stderr.write(error);
-      process.stderr.write('\n');
-      process.exit(1);
-    }
+    if (error) throw error;
 
     // Ensure that the bundle builds before we attempt to open the page.
     request(url, (requestError, response) => {

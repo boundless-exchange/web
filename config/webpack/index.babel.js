@@ -9,7 +9,7 @@ import { current as config } from '..';
 // https://webpack.github.io/docs/configuration.html#output
 export const output = {
   path: config.buildDir,
-  filename: 'app-[chunkhash].js',
+  filename: config.watch ? 'app.js' : 'app-[chunkhash].js',
 };
 
 // https://webpack.github.io/docs/configuration.html#entry
@@ -48,11 +48,11 @@ export const plugins = _.compact([
   // https://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
   new webpack.NoErrorsPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[chunkhash].js'),
+  new webpack.optimize.CommonsChunkPlugin('vendor', config.watch ? 'vendor.js' : 'vendor-[chunkhash].js'),
   // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),
   // https://github.com/ampedandwired/html-webpack-plugin#configuration
-  !config.watch && new HtmlPlugin({
+  new HtmlPlugin({
     inject: false,
     template: path.join(config.srcDir, 'index.html.ejs'),
     minify: {
@@ -61,7 +61,7 @@ export const plugins = _.compact([
     },
   }),
   // https://github.com/NekR/offline-plugin#options
-  new OfflinePlugin({
+  !config.watch && new OfflinePlugin({
     updateStrategy: 'changed',
   }),
   // https://webpack.github.io/docs/list-of-plugins.html#hotmodulereplacementplugin
