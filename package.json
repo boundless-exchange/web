@@ -8,6 +8,7 @@
   "license": "Apache-2.0",
   "repository": "boundless-exchange/web",
   "scripts": {
+    "build": "./scripts/build",
     "start": "./scripts/start"
   },
   "dependencies": {
