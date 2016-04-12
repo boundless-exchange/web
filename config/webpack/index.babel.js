@@ -44,15 +44,22 @@ export const resolve = {
 
 // https://webpack.github.io/docs/configuration.html#plugins
 export const plugins = _.compact([
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-  config.watch && new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin(),
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+  new webpack.optimize.OccurrenceOrderPlugin(true),
   new HtmlPlugin({
     inject: false,
     template: path.join(config.srcDir, 'index.html.ejs'),
     minify: {
       removeComments: true,
       collapseWhitespace: true,
+    },
+  }),
+  config.watch && new webpack.HotModuleReplacementPlugin(),
+  config.optimize && new webpack.optimize.UglifyJsPlugin({
+    // https://github.com/mishoo/UglifyJS2#compressor-options
+    compress: {
+      warnings: false,
     },
   }),
 ]);

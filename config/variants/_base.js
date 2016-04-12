@@ -7,10 +7,12 @@ const ROOT_DIR = path.resolve(__dirname, '..', '..');
  */
 export default {
 
-  // Debugging
+  // Debugging & Optimization
 
   // Whether the project should be (hot) reloaded when source files change.
   watch: false,
+  // Whether the built output should be optimized (minimized)
+  optimize: false,
 
   // Pathing
 
