@@ -15,7 +15,7 @@ export default {
   // Pathing
 
   rootDir: ROOT_DIR,
-  buildDir: path.join(ROOT_DIR, 'build'),
+  buildDir: path.join(ROOT_DIR, 'build', '{{variant}}'),
   srcDir: path.join(ROOT_DIR, 'src'),
 
 };

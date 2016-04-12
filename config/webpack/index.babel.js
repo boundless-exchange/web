@@ -7,7 +7,7 @@ import { current as config } from '..';
 
 // https://webpack.github.io/docs/configuration.html#output
 export const output = {
-  path: path.join(config.buildDir, config.variant),
+  path: config.buildDir,
   filename: 'app.js',
 };
 

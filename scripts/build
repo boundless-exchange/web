@@ -3,14 +3,12 @@ set -e
 source ./scripts/include/config
 source ./scripts/include/node
 
-readonly OUTPUT_DIR="${config_buildDir}/${config_variant}"
-
 # It doesn't make sense to have reloading enabled when building static assets.
 config_watch=0
 
-rm -rf "${OUTPUT_DIR}"
+rm -rf "${config_buildDir}"
 webpack --config ./config/webpack/index.babel.js
 
 echo
-echo "Built project to ${OUTPUT_DIR}"
+echo "Built project to ${config_buildDir}"
 echo

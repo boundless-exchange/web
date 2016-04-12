@@ -4,6 +4,7 @@ import variantBase from './variants/_base';
 
 export const VARIANTS = [
   'development',
+  'production',
 ];
 
 // Prefix to all configuration values accepted/generated via env vars.
@@ -18,8 +19,9 @@ export function get(variant) {
 
   const variantConfig = require(`./variants/${variant}`).default;
 
-  const config = _.merge({}, variantBase, variantConfig, {variant});
-  injectOverrides(config);
+  let config = _.merge({}, variantBase, variantConfig, {variant});
+  config = _injectOverrides(config);
+  config = _evaluateSubstitutions(config, config);
 
   return config;
 }
@@ -32,7 +34,7 @@ export function get(variant) {
  * nested object keys.  For example, `config_ios_buildDir` maps to
  * `ios.buildDir` in the configuration object.
  */
-function injectOverrides(config) {
+function _injectOverrides(config) {
   _.each(process.env, (value, key) => {
     if (!_.startsWith(key, ENV_PREFIX)) return;
     const path = key.substr(ENV_PREFIX.length).replace(/_/g, '.');
@@ -48,12 +50,32 @@ function injectOverrides(config) {
 
     _.set(config, path, value);
   });
+
+  return config;
+}
+
+/**
+ * Replaces occurrences of {{key}} inside string values in the configuration.
+ *
+ * This allows for semi-dynamic configuration, such as including the {{variant}}
+ * via values defined in _base.
+ */
+function _evaluateSubstitutions(config, value) {
+  if (_.isObject(value)) {
+    return _.mapValues(value, _evaluateSubstitutions.bind(null, config));
+  } else if (_.isArray(value)) {
+    return _.map(value, _evaluateSubstitutions.bind(null, config));
+  } else if (!_.isString(value)) {
+    return value;
+  }
+
+  return value.replace(/\{\{(.*?)\}\}/, (_match, key) => _.get(config, key));
 }
 
 /**
  * Emits all configuration values in a shell-friendly key=value format.
  *
- * Follows the same rules as `injectOverrides`, but in reverse.
+ * Follows the same rules as `_injectOverrides`, but in reverse.
  */
 export function stringifyForShell(config) {
   const flatConfig = flatten(config);
