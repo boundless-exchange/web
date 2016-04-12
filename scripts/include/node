@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 (( __NODE_INCLUDED__ )) && return
 __NODE_INCLUDED__=1
 

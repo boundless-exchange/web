@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 set -e
+source ./scripts/include/config
 source ./scripts/include/node
 
+OUTPUT_DIR="${config_buildDir}/${config_variant}"
+rm -rf "${OUTPUT_DIR}"
 webpack --config ./config/webpack/index.babel.js
+
+echo
+echo "Built project to ${OUTPUT_DIR}"
+echo
