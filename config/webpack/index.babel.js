@@ -7,18 +7,17 @@ import { current as config } from '..';
 export default {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    app: [
-      'babel-polyfill',
-      'webpack-hot-middleware/client',
-      path.join(config.rootDir, 'src', 'main.jsx'),
-    ],
     vendor: [
-      'lodash',
+      'webpack-hot-middleware/client',
+      path.join(config.rootDir, 'src', 'vendor.js'),
+    ],
+    app: [
+      path.join(config.rootDir, 'src', 'app.js'),
     ],
   },
   output: {
-    path: path.join(config.rootDir, 'build', 'development'),
-    filename: 'bundle.js',
+    path: path.join(config.rootDir, 'build', config.variant),
+    filename: 'app.js',
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
