@@ -8,7 +8,11 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
+import { current as config } from '../config';
 import * as webpackConfig from '../config/webpack/index.babel';
+
+// Make sure that we honor the configured Babel environment.
+process.env.BABEL_ENV = config.babelEnvironment;
 
 const compiler = webpack(webpackConfig);
 

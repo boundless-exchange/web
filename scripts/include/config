@@ -13,3 +13,6 @@ vars=$(babel-node -e "
 set -a
 eval $vars
 set +a
+
+# Be consistent with ./config, and let Babel know what's up:
+export BABEL_ENV=${config_babelEnvironment}

@@ -1,9 +1,9 @@
-import { BaseComponent } from '../components';
+import { BaseComponent, Header } from '../components';
 
 export default class App extends BaseComponent {
 
   render() {
-    return <h1>Hi</h1>;
+    return <Header>Hi</Header>;
   }
 
 }

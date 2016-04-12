@@ -14,11 +14,12 @@ export const output = {
 
 // https://webpack.github.io/docs/configuration.html#entry
 export const entry = {
-  vendor: _.compact([
-    config.watch && 'webpack-hot-middleware/client',
-    path.join(config.srcDir, 'vendor.js'),
-  ]),
+  // vendor: _.compact([
+  //   config.watch && 'webpack-hot-middleware/client',
+  //   path.join(config.srcDir, 'vendor.js'),
+  // ]),
   app: [
+    config.watch && 'webpack-hot-middleware/client',
     path.join(config.srcDir, 'app.jsx'),
   ],
 };
@@ -30,6 +31,19 @@ export const module = {
       loader: 'babel-loader',
       include: path.join(config.srcDir),
       test: /\.jsx?$/,
+      query: {
+        plugins: _.compact([
+          config.watch && ['react-transform', {
+            transforms: [
+              {
+                transform: 'react-transform-hmr',
+                imports: 'react',
+                locals: ['module'],
+              },
+            ],
+          }],
+        ]),
+      },
     },
     {
       loader: 'url-loader?limit=8192',
