@@ -57,5 +57,8 @@ export const plugins = _.compact([
   }),
 ]);
 
+// https://webpack.github.io/docs/configuration.html#bail
+export const bail = true;
+
 // https://webpack.github.io/docs/configuration.html#devtool
 export const devtool = config.watch ? 'cheap-module-eval-source-map' : 'source-map';
