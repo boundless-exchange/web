@@ -9,6 +9,7 @@
   "repository": "boundless-exchange/web",
   "scripts": {
     "build": "./scripts/build",
+    "config": "./scripts/config",
     "start": "./scripts/start"
   },
   "dependencies": {
