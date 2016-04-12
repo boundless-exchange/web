@@ -27,6 +27,7 @@
     "find-free-port": "^1.0.2",
     "html-webpack-plugin": "^2.15.0",
     "lodash": "^4.10.0",
+    "offline-plugin": "^2.1.0",
     "opener": "^1.4.1",
     "request": "^2.70.0",
     "webpack": "^1.12.15",

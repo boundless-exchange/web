@@ -2,13 +2,14 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
+import OfflinePlugin from 'offline-plugin';
 
 import { current as config } from '..';
 
 // https://webpack.github.io/docs/configuration.html#output
 export const output = {
   path: config.buildDir,
-  filename: 'app.js',
+  filename: 'app-[hash].js',
 };
 
 // https://webpack.github.io/docs/configuration.html#entry
@@ -44,9 +45,13 @@ export const resolve = {
 
 // https://webpack.github.io/docs/configuration.html#plugins
 export const plugins = _.compact([
+  // https://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
   new webpack.NoErrorsPlugin(),
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+  // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js'),
+  // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),
+  // https://github.com/ampedandwired/html-webpack-plugin#configuration
   new HtmlPlugin({
     inject: false,
     template: path.join(config.srcDir, 'index.html.ejs'),
@@ -55,7 +60,13 @@ export const plugins = _.compact([
       collapseWhitespace: true,
     },
   }),
+  // https://github.com/NekR/offline-plugin#options
+  new OfflinePlugin({
+    updateStrategy: 'changed',
+  }),
+  // https://webpack.github.io/docs/list-of-plugins.html#hotmodulereplacementplugin
   config.watch && new webpack.HotModuleReplacementPlugin(),
+  // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
   config.optimize && new webpack.optimize.UglifyJsPlugin({
     // https://github.com/mishoo/UglifyJS2#compressor-options
     compress: {
