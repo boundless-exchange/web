@@ -1,6 +1,7 @@
 
 #!/usr/bin/env bash
 set -e
+source ./scripts/include/node
 
 FILES=("${@}")
 if [[ "${#FILES[@]}" = "0" ]]; then
@@ -9,4 +10,4 @@ if [[ "${#FILES[@]}" = "0" ]]; then
   FILES+=($(find src -name "*.jsx"))
 fi
 
-./node_modules/.bin/eslint "${FILES[@]}"
+eslint "${FILES[@]}"
