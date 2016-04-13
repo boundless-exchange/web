@@ -16,3 +16,14 @@ test:
         files:
           - config/**/*.js
           - src/**/*.{js,jsx}
+
+deployment:
+  production:
+    branch: master
+      commands:
+        - echo ${GCLOUD_SERVICE_ACCOUNT} | base64 --decode > ${HOME}/gcloud-key.json
+        - gcloud auth activate-service-account --key-file ${HOME}/gcloud-key.json
+        - gcloud set project ${GCLOUD_PROJECT}
+        - npm run deploy
+          environment:
+            VARIANT: production
