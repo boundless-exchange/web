@@ -7,7 +7,7 @@ source ./scripts/include/node
 config_watch=0
 
 rm -rf "${config_buildDir}"
-webpack --config ./config/webpack/index.babel.js
+webpack --config ./config/webpack/es5
 
 echo
 echo "Built project to ${config_buildDir}"

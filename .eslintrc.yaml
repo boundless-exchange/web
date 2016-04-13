@@ -1,5 +1,3 @@
-# Base eslint rules that are applicable to all project types.
-
 parser: babel-eslint
 
 extends:
@@ -14,7 +12,7 @@ plugins:
 settings:
   import/resolver:
     webpack:
-      config: ./config/webpack/index.babel.js
+      config: ./config/webpack/es5
   import/parser: babel-eslint
 
 parserOptions:

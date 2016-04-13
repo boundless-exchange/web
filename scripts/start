@@ -9,7 +9,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import { current as config } from '../config';
-import * as webpackConfig from '../config/webpack/index.babel';
+import * as webpackConfig from '../config/webpack';
 
 // Make sure that we honor the configured Babel environment.
 process.env.BABEL_ENV = config.babelEnvironment;
