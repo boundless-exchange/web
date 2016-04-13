@@ -5,4 +5,5 @@
  */
 export default {
   optimize: true,
+  gcloudBucket: 'boundless.exchange',
 };

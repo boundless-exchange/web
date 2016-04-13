@@ -14,6 +14,11 @@ export default {
   // Whether the built output should be optimized (minimized)
   optimize: false,
 
+  // Deployment
+
+  // The Google Cloud Storage bucket to deploy to.
+  gcloudBucket: null,
+
   // Pathing
 
   rootDir: ROOT_DIR,

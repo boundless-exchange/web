@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+source ./scripts/include/config
+
+if [[ "${config_gcloudBucket}" == "" ]]; then
+  echo "glcoudBucket is not configured for this variant (${config_variant})"
+  exit 1
+fi
+
+./scripts/build
+
+gsutil -m rsync -c -r -d "${config_buildDir}" "gs://${config_gcloudBucket}"
