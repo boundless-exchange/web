@@ -60,10 +60,6 @@ export const plugins = _.compact([
       collapseWhitespace: true,
     },
   }),
-  // https://github.com/NekR/offline-plugin#options
-  !config.watch && new OfflinePlugin({
-    updateStrategy: 'changed',
-  }),
   // https://webpack.github.io/docs/list-of-plugins.html#hotmodulereplacementplugin
   config.watch && new webpack.HotModuleReplacementPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
