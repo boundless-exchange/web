@@ -2,7 +2,6 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
-import OfflinePlugin from 'offline-plugin';
 
 import { current as config } from '..';
 
