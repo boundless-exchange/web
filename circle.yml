@@ -1,0 +1,17 @@
+
+machine:
+  node:
+    version: 5.10.1
+
+dependencies:
+  cache_directories:
+    - ~/nvm/versions/node/v5.10.1
+  pre:
+    - '[[ "$(npm --version)" = "$(cat .npm-version)" ]] || npm install -g npm@$(cat .npm-version) --silent --depth 0'
+
+test:
+  override:
+    - npm run test:style:
+        parallel: true
+        files:
+          - src/**/*.js
