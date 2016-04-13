@@ -9,4 +9,4 @@ fi
 
 ./scripts/build
 
-gsutil -m rsync -r -d "${config_buildDir}" "gs://${config_gcloudBucket}"
+gsutil -m rsync -c -r -d "${config_buildDir}" "gs://${config_gcloudBucket}"
