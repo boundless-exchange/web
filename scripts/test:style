@@ -1,0 +1,12 @@
+
+#!/usr/bin/env bash
+set -e
+
+FILES=("${@}")
+if [[ "${#FILES[@]}" = "0" ]]; then
+  FILES+=($(find config -name "*.js"))
+  FILES+=($(find src -name "*.js"))
+  FILES+=($(find src -name "*.jsx"))
+fi
+
+./node_modules/.bin/eslint "${FILES[@]}"
