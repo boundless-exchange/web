@@ -9,6 +9,8 @@ export default {
 
   // Debugging & Optimization
 
+  // Whether the project and its dependencies should be in "debug mode".
+  debug: false,
   // Whether the project should be (hot) reloaded when source files change.
   watch: false,
   // Whether the built output should be optimized (minimized)

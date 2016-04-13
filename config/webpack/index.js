@@ -48,6 +48,11 @@ export const plugins = _.compact([
   new webpack.NoErrorsPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
   new webpack.optimize.CommonsChunkPlugin('vendor', config.watch ? 'vendor.js' : 'vendor-[chunkhash].js'),
+  // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': config.debug ? 'development' : 'production',
+    'process.env.BROWSER':  'true',
+  }),
   // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),
   // https://github.com/ampedandwired/html-webpack-plugin#configuration
