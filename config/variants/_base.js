@@ -18,8 +18,8 @@ export default {
 
   // Deployment
 
-  // The Google Cloud Storage bucket to deploy to.
-  gcloudBucket: null,
+  // The Firebase project to deploy to.
+  firebaseProject: null,
 
   // Pathing
 

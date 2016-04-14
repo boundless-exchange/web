@@ -2,11 +2,21 @@
 set -e
 source ./scripts/include/config
 
-if [[ "${config_gcloudBucket}" == "" ]]; then
-  echo "glcoudBucket is not configured for this variant (${config_variant})"
+if [[ "${config_firebaseProject}" == "" ]]; then
+  echo "firebaseProject is not configured for this variant (${config_variant})"
   exit 1
 fi
 
 ./scripts/build
 
-gsutil -m rsync -c -r -d "${config_buildDir}" "gs://${config_gcloudBucket}"
+if [[ "${CIRCLE_BUILD_URL}" != "" ]]; then
+  message="Deploying ${CIRCLE_BUILD_URL}"
+else
+  gitSha=$(git rev-parse HEAD)
+  message="Deploying https://github.com/boundless-exchange/web/tree/${gitSha}"
+fi
+
+firebase --non-interactive deploy \
+  --firebase "${config_firebaseProject}" \
+  --public "build/${config_variant}" \
+  --message "${message}"

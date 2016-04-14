@@ -5,5 +5,5 @@
  */
 export default {
   optimize: true,
-  gcloudBucket: 'boundless.exchange',
+  firebaseProject: 'boundless-exchange',
 };
