@@ -2,24 +2,10 @@
 (( __NODE_INCLUDED__ )) && return
 __NODE_INCLUDED__=1
 
-DOT_NODE_VERSION="./.node-version"
-DOT_NPM_VERSION="./.npm-version"
-if [ ! -f "${DOT_NODE_VERSION}" ] || [ ! -f "${DOT_NODE_VERSION}" ]; then
-  echo "Cannot find expected files: .node-version .npm-version"
-  exit 1
-fi
-
 CURRENT_NODE_VERSION=$(node --version 2> /dev/null || echo 'none')
-DESIRED_NODE_VERSION=v$(cat "$DOT_NODE_VERSION")
+DESIRED_NODE_VERSION=v$(cat .nvmrc)
 if [[ "${CURRENT_NODE_VERSION}" != "${DESIRED_NODE_VERSION}" ]]; then
   echo "Wrong node version. Found '${CURRENT_NODE_VERSION}', expected '${DESIRED_NODE_VERSION}'"
-  exit 1
-fi
-
-CURRENT_NPM_VERSION=$(npm --version 2> /dev/null || echo 'none')
-DESIRED_NPM_VERSION=$(cat "$DOT_NPM_VERSION")
-if [[ "${CURRENT_NPM_VERSION}" != "${DESIRED_NPM_VERSION}" ]]; then
-  echo "Wrong npm version. Found '${CURRENT_NPM_VERSION}', expected '${DESIRED_NPM_VERSION}'"
   exit 1
 fi
 
