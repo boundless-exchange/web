@@ -9,14 +9,7 @@ fi
 
 ./scripts/build
 
-if [[ "${CIRCLE_BUILD_URL}" != "" ]]; then
-  message="Deploying ${CIRCLE_BUILD_URL}"
-else
-  gitSha=$(git rev-parse HEAD)
-  message="Deploying https://github.com/boundless-exchange/web/tree/${gitSha}"
-fi
-
 firebase --non-interactive deploy \
   --firebase "${config_firebaseProject}" \
   --public "build/${config_variant}" \
-  --message "${message}"
+  --message $(git rev-parse HEAD)
