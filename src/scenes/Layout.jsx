@@ -1,6 +1,6 @@
 import { Header } from '../components';
 
-export default function App({children}) {
+export default function Layout({children}) {
   return (
     <div>
       <Header />
