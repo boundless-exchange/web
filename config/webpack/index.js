@@ -8,6 +8,7 @@ import { current as config } from '..';
 // https://webpack.github.io/docs/configuration.html#output
 export const output = {
   path: config.buildDir,
+  publicPath: '/',
   filename: config.watch ? 'app.js' : 'app-[chunkhash].js',
 };
 
