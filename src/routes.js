@@ -1,7 +1,6 @@
 import {
   browserHistory,
   IndexRoute,
-  Redirect,
   Router,
   Route,
 } from 'react-router';
