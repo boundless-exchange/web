@@ -28,6 +28,7 @@
     "eslint-plugin-import": "^1.4.0",
     "eslint-plugin-react": "^4.3.0",
     "find-free-port": "^1.0.2",
+    "firebase-tools": "^2.2.1",
     "html-webpack-plugin": "^2.15.0",
     "lodash": "^4.10.0",
     "opener": "^1.4.1",
@@ -38,8 +39,5 @@
     "webpack": "^1.12.15",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
-  },
-  "devDependencies": {
-    "firebase-tools": "^2.2.1"
   }
 }
