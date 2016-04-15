@@ -27,13 +27,17 @@ export const entry = {
 export const module = {
   loaders: [
     {
-      loader: 'babel-loader',
+      loader: 'babel',
       include: path.join(config.srcDir),
       test: /\.jsx?$/,
     },
     {
-      loader: 'url-loader?limit=8192',
+      loader: 'url?limit=8192',
       test: /\.(png|jpg)$/,
+    },
+    {
+      loader: 'style!css',
+      test: /\.css$/,
     },
   ],
 };
