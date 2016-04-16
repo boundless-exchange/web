@@ -3,6 +3,7 @@ import 'lodash';
 import 'normalize.css';
 import 'react-addons-shallow-compare';
 import 'react-dom';
+import 'react-look';
 import * as React from 'react';
 
 // Make React global so that we can use JSX without fear.
