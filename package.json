@@ -39,6 +39,7 @@
     "react": "^15.0.1",
     "react-addons-shallow-compare": "^15.0.1",
     "react-dom": "^15.0.1",
+    "react-look": "^1.0.0-beta8",
     "react-redux": "^4.4.4",
     "react-router": "^2.2.0",
     "react-router-redux": "^4.0.2",

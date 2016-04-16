@@ -1,7 +1,8 @@
-import * as reactDom from 'react-dom';
-import { Provider } from 'react-redux';
 import { browserHistory, Router } from 'react-router';
+import { LookRoot, Presets } from 'react-look';
+import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
+import * as reactDom from 'react-dom';
 
 import { createStore } from './store';
 
@@ -13,9 +14,11 @@ const history = syncHistoryWithStore(browserHistory, store);
 function renderRoot() {
   const routes = require('./routes').createRoutes();
   const root = (
-    <Provider store={store}>
-      <Router history={history} routes={routes} />
-    </Provider>
+    <LookRoot config={Presets['react-dom']}>
+      <Provider store={store}>
+        <Router history={history} routes={routes} />
+      </Provider>
+    </LookRoot>
   );
   reactDom.render(root, document.getElementById('root'));
 }
