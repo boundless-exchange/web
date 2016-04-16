@@ -61,6 +61,7 @@ export const plugins = _.compact([
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(config.debug ? 'development' : 'production'),
     'process.env.BROWSER':  'true',
+    '__CONFIG__.debug':     JSON.stringify(config.debug),
   }),
   // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
   new webpack.optimize.OccurrenceOrderPlugin(true),

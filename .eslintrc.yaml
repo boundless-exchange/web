@@ -24,6 +24,9 @@ env:
   browser: true
   commonjs: true
 
+globals:
+  __CONFIG__: true
+
 rules:
   # http://eslint.org/docs/rules/#possible-errors
   comma-dangle: [2, 'always-multiline']
