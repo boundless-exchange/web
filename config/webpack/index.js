@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlPlugin from 'html-webpack-plugin';
 
 import { current as config } from '..';
@@ -9,7 +10,8 @@ import { current as config } from '..';
 export const output = {
   path: config.buildDir,
   publicPath: '/',
-  filename: config.watch ? 'app.js' : 'app-[chunkhash].js',
+  filename:      config.watch ? '[name].js' : '[name]-[chunkhash].js',
+  chunkFilename: config.watch ? '[name].js' : '[name]-[chunkhash].js',
 };
 
 // https://webpack.github.io/docs/configuration.html#entry
@@ -36,7 +38,7 @@ export const module = {
       test: /\.(png|jpg)$/,
     },
     {
-      loader: 'style!css',
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
       test: /\.css$/,
     },
   ],
@@ -53,6 +55,8 @@ export const plugins = _.compact([
   new webpack.NoErrorsPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
   new webpack.optimize.CommonsChunkPlugin('vendor', config.watch ? 'vendor.js' : 'vendor-[chunkhash].js'),
+  // https://github.com/webpack/extract-text-webpack-plugin
+  new ExtractTextPlugin(config.watch ? '[name].css' : '[name]-[contenthash].css'),
   // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(config.debug ? 'development' : 'production'),
