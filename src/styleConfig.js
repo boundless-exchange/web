@@ -19,9 +19,8 @@ export default {
     Plugins.statefulSelector,
     Plugins.mixin,
     Plugins.fallbackValue,
-    Plugins.styleLogger,
+    // Not consistent; see https://github.com/rofrischmann/react-look/issues/257
     Plugins.friendlyClassName,
-    // Plugins.linter,
   ]),
 
   // Configuration for Plugins.mixin
@@ -45,11 +44,6 @@ export default {
 
     // Queries
     '@platform': Mixins.platformQuery,
-  },
-
-  // configuration for Plugins.styleLogger
-  styleLogger: {
-    onRender: true,
   },
 
 };
