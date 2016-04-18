@@ -24,6 +24,9 @@ env:
   browser: true
   commonjs: true
 
+globals:
+  __CONFIG__: true
+
 rules:
   # http://eslint.org/docs/rules/#possible-errors
   comma-dangle: [2, 'always-multiline']
@@ -154,7 +157,6 @@ rules:
   react/no-multi-comp: [2, {ignoreStateless: true}]
   react/no-string-refs: 2
   react/prefer-es6-class: 2
-  react/prefer-stateless-function: 2
   react/prop-types: 0
   react/react-in-jsx-scope: 0
   react/require-extension: 2

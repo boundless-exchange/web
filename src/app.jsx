@@ -1,7 +1,8 @@
-import * as reactDom from 'react-dom';
-import { Provider } from 'react-redux';
 import { browserHistory, Router } from 'react-router';
+import { LookRoot } from 'react-look';
+import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
+import * as reactDom from 'react-dom';
 
 import { createStore } from './store';
 
@@ -11,15 +12,26 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // Application Entry
 function renderRoot() {
-  const routes = require('./routes').createRoutes();
+  const routes      = require('./routes').createRoutes();
+  const styleConfig = require('./styleConfig').default;
+
   const root = (
-    <Provider store={store}>
-      <Router history={history} routes={routes} />
-    </Provider>
+    <LookRoot config={styleConfig}>
+      <Provider store={store}>
+        <Router history={history} routes={routes} />
+      </Provider>
+    </LookRoot>
   );
   reactDom.render(root, document.getElementById('root'));
 }
 renderRoot();
+
+function reloadRoot() {
+  // react-router doesn't support hot reloading yet; so we've got to blow it
+  // all away.
+  reactDom.unmountComponentAtNode(document.getElementById('root'));
+  renderRoot();
+}
 
 // Hot Reloading
 if (module.hot) {
@@ -29,10 +41,6 @@ if (module.hot) {
     store.replaceReducer(require('./store').createRootReducer());
   });
 
-  module.hot.accept('./routes', () => {
-    // react-router doesn't support hot reloading yet; so we've got to blow it
-    // all away.
-    reactDom.unmountComponentAtNode(document.getElementById('root'));
-    renderRoot();
-  });
+  module.hot.accept('./routes', reloadRoot);
+  module.hot.accept('./styleConfig', reloadRoot);
 }

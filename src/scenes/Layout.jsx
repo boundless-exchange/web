@@ -1,10 +1,14 @@
-import { Header } from '../components';
+import { BaseComponent, Header } from '../components';
 
-export default function Layout({children}) {
-  return (
-    <div>
-      <Header />
-      {children}
-    </div>
-  );
+export default class Layout extends BaseComponent {
+
+  render() {
+    return (
+      <div>
+        <Header />
+        {this.props.children}
+      </div>
+    );
+  }
+
 }
