@@ -38,7 +38,7 @@ export const module = {
       test: /\.(png|jpg)$/,
     },
     {
-      loader: 'file',
+      loader: 'file?name=[name]-[sha512:hash:base58:20].[ext]',
       test: /\.(eot|ttf|woff2?)$/,
     },
     {
@@ -60,7 +60,7 @@ export const plugins = _.compact([
   // https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
   new webpack.optimize.CommonsChunkPlugin('vendor', config.watch ? 'vendor.js' : 'vendor-[chunkhash].js'),
   // https://github.com/webpack/extract-text-webpack-plugin
-  new ExtractTextPlugin(config.watch ? '[name].css' : '[name]-[contenthash].css'),
+  new ExtractTextPlugin(config.watch ? '[name].css' : '[name]-[sha512:contenthash:base58:20].css'),
   // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(config.debug ? 'development' : 'production'),
