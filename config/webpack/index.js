@@ -74,8 +74,6 @@ export const plugins = _.compact([
       collapseWhitespace: true,
     },
   }),
-  // https://webpack.github.io/docs/list-of-plugins.html#hotmodulereplacementplugin
-  config.watch && new webpack.HotModuleReplacementPlugin(),
   // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
   config.optimize && new webpack.optimize.UglifyJsPlugin({
     // https://github.com/mishoo/UglifyJS2#compressor-options
@@ -83,6 +81,8 @@ export const plugins = _.compact([
       warnings: false,
     },
   }),
+  // https://webpack.github.io/docs/list-of-plugins.html#hotmodulereplacementplugin
+  config.watch && new webpack.HotModuleReplacementPlugin(),
 ]);
 
 // https://webpack.github.io/docs/configuration.html#bail
