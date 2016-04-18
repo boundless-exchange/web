@@ -2,7 +2,7 @@ import look, { StyleSheet } from 'react-look';
 
 import { BaseComponent } from '../components';
 import { Header } from '../components/Layout';
-import { sizes, styles } from '../constants';
+import { fonts, sizes, styles } from '../constants';
 
 const STYLES = StyleSheet.create({
   root: {
@@ -24,6 +24,7 @@ const STYLES = StyleSheet.create({
   },
   content: {
     ...styles.DARK_ON_LIGHT,
+    ...fonts.BODY,
     maxWidth: sizes.MAX_CONTENT_WIDTH,
     margin: '0 auto',
     paddingLeft: sizes.SPACING.NORMAL,

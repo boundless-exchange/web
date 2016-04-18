@@ -12,10 +12,12 @@ import 'react-router';
 import 'redux-interactions';
 import 'redux-thunk';
 import 'redux';
+import 'webfontloader';
 import * as React from 'react';
 
 import 'box-sizing.css';
 import 'normalize.css';
+import './assets/fonts/index.css';
 
 // Make React global so that we can use JSX without fear.
 global.React = React;
