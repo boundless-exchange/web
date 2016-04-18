@@ -3,6 +3,7 @@ import { LookRoot } from 'react-look';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import * as reactDom from 'react-dom';
+import webfontloader from 'webfontloader';
 
 import { createStore } from './store';
 
@@ -11,6 +12,9 @@ const store   = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 // Application Entry
+loadFonts()
+  .then(renderRoot);
+
 function renderRoot() {
   const routes      = require('./routes').createRoutes();
   const styleConfig = require('./styleConfig').default;
@@ -24,7 +28,26 @@ function renderRoot() {
   );
   reactDom.render(root, document.getElementById('root'));
 }
-renderRoot();
+
+function loadFonts() {
+  return new Promise((resolve, _reject) => {
+    webfontloader.load({
+      timeout: 2500,
+      active: resolve,
+      inactive: resolve,
+      custom: {
+        // See ./assets/fonts/index.css
+        families: [
+          'Fela-Light',
+          'Lato-Bold',
+          'Lato-BoldItalic',
+          'Lato-Italic',
+          'Lato-Regular',
+        ],
+      },
+    });
+  });
+}
 
 function reloadRoot() {
   // react-router doesn't support hot reloading yet; so we've got to blow it

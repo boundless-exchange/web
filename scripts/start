@@ -16,20 +16,6 @@ process.env.BABEL_ENV = config.babelEnvironment;
 
 const compiler = webpack(webpackConfig);
 
-// webpack-dev-middleware throws globally when not in lazy mode.
-function trapWebpackCompilationErrors() {
-  process.on('uncaughtException', error => {
-    if (error.name !== 'ModuleBuildError') throw error;
-    let message = error.message;
-    // Attempt to clean it up
-    message = message.replace('Module build failed: SyntaxError: ', '');
-    message = message.replace(process.cwd(), '');
-    message = message.replace(/\n\s*at.*/g, '');
-    // And out we go.
-    process.stderr.write(`${message}\n`);
-  });
-}
-
 function startServer(port) {
   const app = connect();
   const url = `http://localhost:${port}`;
@@ -52,9 +38,6 @@ function startServer(port) {
 
     // Ensure that the bundle builds before we attempt to open the page.
     request(url, () => {
-      // If we've gotten this far; we're guaranteed to have a valid bundle.
-      trapWebpackCompilationErrors();
-
       process.stdout.write(`Dev server listening at ${url}\n`);
       opener(url);
     });
