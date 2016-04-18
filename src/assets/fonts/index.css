@@ -1,0 +1,65 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3205368, 2016-04-18T03:09:26-0400
+ *
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are
+ * explicitly restricted from using the Licensed Webfonts(s).
+ *
+ * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: Fela-Light by Maciej Włoczewski
+ * URL: http://www.myfonts.com/fonts/maciej-wloczewski/fela/light/
+ * Copyright: Copyright &#x00A9; 2014 by Maciej Wloczewski. All rights reserved.
+ * Licensed pageviews: 20,000
+ *
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=3205368
+ *
+ * © 2016 MyFonts Inc
+ */
+@font-face {
+  font-family: 'Fela-Light';
+  src:
+    local('Fela Light'),
+    local('Fela-Light'),
+    url('./Fela-Light.woff2') format('woff2'),
+    url('./Fela-Light.woff')  format('woff');
+}
+
+/* https://www.google.com/fonts/specimen/Lato */
+
+@font-face {
+  font-family: 'Lato-Bold';
+  src:
+    local('Lato Bold'),
+    local('Lato-Bold'),
+    url('./Lato-Bold.woff2') format('woff2'),
+    url('./Lato-Bold.woff')  format('woff');
+}
+
+@font-face {
+  font-family: 'Lato-BoldItalic';
+  src:
+    local('Lato Bold Italic'),
+    local('Lato-BoldItalic'),
+    url('./Lato-BoldItalic.woff2') format('woff2'),
+    url('./Lato-BoldItalic.woff')  format('woff');
+}
+
+@font-face {
+  font-family: 'Lato-Italic';
+  src:
+    local('Lato Italic'),
+    local('Lato-Italic'),
+    url('./Lato-Italic.woff2') format('woff2'),
+    url('./Lato-Italic.woff')  format('woff');
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url('./Lato-Regular.woff2') format('woff2'),
+    url('./Lato-Regular.woff')  format('woff');
+}

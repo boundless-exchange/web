@@ -38,6 +38,10 @@ export const module = {
       test: /\.(png|jpg)$/,
     },
     {
+      loader: 'file',
+      test: /\.(eot|ttf|woff2?)$/,
+    },
+    {
       loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
       test: /\.css$/,
     },
