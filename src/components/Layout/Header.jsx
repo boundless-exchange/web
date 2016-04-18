@@ -8,6 +8,8 @@ const FULL_HEIGHT    = CONTENT_HEIGHT + sizes.SPACING.NORMAL * 2;
 
 const STYLES = StyleSheet.create({
   root: {
+    maxWidth: sizes.MAX_CONTENT_WIDTH + sizes.SPACING.NORMAL * 2,
+    margin: '0 auto',
     padding: sizes.SPACING.NORMAL,
   },
   icon: {
