@@ -1,4 +1,4 @@
-import look, { StyleSheet } from 'react-look';
+import { StyleSheet } from 'react-look';
 
 import { BaseComponent } from '../components';
 import { Header } from '../components/Layout';
