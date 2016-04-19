@@ -5,7 +5,7 @@ export function compactHeader(fontSize, letterSpacing = 0) {
     fontSize: fontSize * 1.25,
     letterSpacing: `${letterSpacing}em`,
     marginLeft: '-0.075em',
-    marginRight: `-${0.03 + letterSpacing}em`,
+    marginRight: `-${0.1 + letterSpacing}em`,
   };
 }
 

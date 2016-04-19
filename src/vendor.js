@@ -9,9 +9,12 @@ import 'react-look';
 import 'react-redux';
 import 'react-router-redux';
 import 'react-router';
+import 'react-web-animation';
 import 'redux-interactions';
 import 'redux-thunk';
 import 'redux';
+import 'svg-inline-react';
+import 'web-animations-js/web-animations-next.min.js';
 import 'webfontloader';
 import * as React from 'react';
 
