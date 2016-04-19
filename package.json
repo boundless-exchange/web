@@ -32,7 +32,7 @@
     "eslint-import-resolver-webpack": "^0.2.0",
     "eslint-plugin-babel": "^3.2.0",
     "eslint-plugin-import": "^1.4.0",
-    "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "find-free-port": "^1.0.2",
