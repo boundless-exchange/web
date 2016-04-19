@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -e
-source ./scripts/include/node
 
 # Until the next version is cut
-cd ./node_modules/react-web-animation
-npm install
-npm run build:lib
+if [[ ! -d ./node_modules/react-web-animation/lib ]]; then
+  cd ./node_modules/react-web-animation
+  npm install
+  npm run build:lib
+  cd ../..
+fi
