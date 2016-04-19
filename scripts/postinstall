@@ -4,7 +4,7 @@ set -e
 # Until the next version is cut
 if [[ ! -d ./node_modules/react-web-animation/lib ]]; then
   cd ./node_modules/react-web-animation
-  npm install
+  npm install --ignore-scripts
   npm run build:lib
   cd ../..
 fi
