@@ -1,11 +1,27 @@
+import { Animatable, AnimationGroup } from 'react-web-animation';
 import { Link } from 'react-router';
 import { StyleSheet } from 'react-look';
 import InlineSvg from 'svg-inline-react';
 
+import { BaseComponent } from '..';
 import { colors, fonts, sizes } from '../../constants';
 
-const CONTENT_HEIGHT = 64;
-const FULL_HEIGHT    = CONTENT_HEIGHT + sizes.SPACING.NORMAL * 2;
+// Pre-calculated letter spacing to line up the logo text.
+const BOUNDLESS_SPACING = 0.475;
+const EXCHANGE_SPACING  = 0.5825;
+
+// Pre-calculated width/height ratio of the icon.
+const ICON_ASPECT_RATIO = 1.25;
+// Pre-calculated width/height ratio of "BOUNDLESS" at max letter spacing.
+const ROW_ASPECT_RATIO = 11.9318681319;
+
+const CONTENT_HEIGHT  = 64;
+const FULL_HEIGHT     = CONTENT_HEIGHT + sizes.SPACING.NORMAL * 2;
+const ROW_HEIGHT      = (CONTENT_HEIGHT - sizes.SPACING.NORMAL) / 2;
+const MAX_SCROLL      = CONTENT_HEIGHT - ROW_HEIGHT;
+const ROW_FULL_WIDTH  = ROW_HEIGHT * ROW_ASPECT_RATIO;
+const ICON_FULL_WIDTH = CONTENT_HEIGHT * ICON_ASPECT_RATIO;
+const LOGO_FULL_WIDTH = ICON_FULL_WIDTH + sizes.SPACING.NORMAL + ROW_FULL_WIDTH;
 
 const STYLES = StyleSheet.create({
   root: {
@@ -15,53 +31,151 @@ const STYLES = StyleSheet.create({
     padding: sizes.SPACING.NORMAL,
   },
   logoLink: {
-    display: 'flex',
+    position: 'relative',
     color: colors.MONOCHROME.LIGHT,
     textDecoration: 'none',
+    width: LOGO_FULL_WIDTH,
+    margin: -sizes.SPACING.NORMAL,
+    padding: sizes.SPACING.NORMAL,
   },
   icon: {
+    transformOrigin: 'left bottom',
     height: CONTENT_HEIGHT,
-    fill:   colors.PRIMARY,
-  },
-  logoTextContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: sizes.SPACING.NORMAL,
-    marginRight: sizes.SPACING.NORMAL,
-    textTransform: 'uppercase',
-  },
-  logoTextSpacer: {
-    flex: 1,
+    width: ICON_FULL_WIDTH,
+    fill: colors.PRIMARY,
   },
   boundless: {
-    ...fonts.compactHeader((CONTENT_HEIGHT - sizes.SPACING.NORMAL) / 2, 0.466),
-    paddingTop: '0.025em',
+    ...fonts.compactHeader(ROW_HEIGHT, BOUNDLESS_SPACING),
+    position: 'absolute',
+    textTransform: 'uppercase',
   },
   exchange: {
-    ...fonts.compactHeader((CONTENT_HEIGHT - sizes.SPACING.NORMAL) / 2, 0.575),
-    paddingBottom: '0.05em',
+    ...fonts.compactHeader(ROW_HEIGHT, EXCHANGE_SPACING),
+    position: 'absolute',
+    textTransform: 'uppercase',
+    bottom: sizes.SPACING.NORMAL,
+    right: sizes.SPACING.NORMAL,
   },
   nav: {
     flex: 1,
   },
 });
 
-export default function Header({className}) {
-  return (
-    <header className={`${STYLES.root} ${className}`}>
-      <Link to='/' className={STYLES.logoLink}>
-        <InlineSvg raw src={require('svg-inline!../../assets/logo.svg')} className={STYLES.icon} />
-        <div className={STYLES.logoTextContainer}>
+// Doesn't matter; just pick something with enough granularity.
+const SCROLL_TRANSITION_DURATION = 10000;
+
+const TIMINGS = {
+  linear: {
+    duration: SCROLL_TRANSITION_DURATION,
+    easing: 'linear',
+    fill: 'forwards',
+  },
+  easeInOut: {
+    duration: SCROLL_TRANSITION_DURATION,
+    easing: 'ease-in-out',
+    fill: 'forwards',
+  },
+};
+
+const KEYFRAMES = {
+  root: [
+    {offset: 0, transform: 'translateY(0)'},
+    {offset: 1, transform: `translateY(${-MAX_SCROLL}px)`},
+  ],
+  icon: [
+    {offset: 0, transform: 'scale(1)'},
+    {offset: 1, transform: `scale(${(CONTENT_HEIGHT - MAX_SCROLL) / CONTENT_HEIGHT})`},
+  ],
+  boundless: [
+    {
+      offset: 0,
+      left: `${ICON_FULL_WIDTH + sizes.SPACING.NORMAL * 2}px`,
+      bottom: `${ROW_HEIGHT + sizes.SPACING.NORMAL * 2}px`,
+      transform: 'translateY(0)',
+      letterSpacing: `${BOUNDLESS_SPACING}em`,
+    },
+    {
+      offset: 1,
+      left: `${(ROW_HEIGHT * ICON_ASPECT_RATIO) + sizes.SPACING.NORMAL * 2}px`,
+      bottom: `${sizes.SPACING.NORMAL}px`,
+      transform: 'translateY(-0.035em)',
+      letterSpacing: '0.025em',
+    },
+  ],
+  exchange: [
+    {
+      offset: 0,
+      letterSpacing: `${EXCHANGE_SPACING}em`,
+      transform: 'translate(0, -0.075em)',
+    },
+    {
+      offset: 1,
+      letterSpacing: '0.025em',
+      transform: `translate(-${EXCHANGE_SPACING}em, -0.035em)`,
+    },
+  ],
+};
+
+export default class Header extends BaseComponent {
+
+  static FULL_HEIGHT = FULL_HEIGHT;
+
+  state = {
+    transitionDuration: 0,
+  }
+
+  componentWillMount() {
+    this._updateTransitionDuration();
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this._onScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+  }
+
+  render() {
+    return (
+      <AnimationGroup playState='paused' currentTime={this.state.transitionDuration}>
+        <Animatable timing={TIMINGS.linear} keyframes={KEYFRAMES.root}>
+          <header className={`${STYLES.root} ${this.props.className}`}>
+            <Link to='/' className={STYLES.logoLink} title='Boundless Exchange'>
+              {this._renderLogo()}
+            </Link>
+          </header>
+        </Animatable>
+      </AnimationGroup>
+    );
+  }
+
+  _renderLogo() {
+    return (
+      <AnimationGroup playState='paused' currentTime={this.state.transitionDuration}>
+        <Animatable timing={TIMINGS.linear} keyframes={KEYFRAMES.icon}>
+          <div className={STYLES.icon}>
+            <InlineSvg raw src={require('svg-inline!../../assets/logo.svg')} />
+          </div>
+        </Animatable>
+        <Animatable timing={TIMINGS.linear} keyframes={KEYFRAMES.boundless}>
           <span className={STYLES.boundless}>Boundless</span>
-          <span className={STYLES.logoTextSpacer}> </span>
+        </Animatable>
+        <Animatable timing={TIMINGS.linear} keyframes={KEYFRAMES.exchange}>
           <span className={STYLES.exchange}>Exchange</span>
-        </div>
-      </Link>
-      <nav className={STYLES.navigation}>
+        </Animatable>
+      </AnimationGroup>
+    );
+  }
 
-      </nav>
-    </header>
-  );
+  _onScroll = () => {
+    this._updateTransitionDuration();
+  }
+
+  _updateTransitionDuration() {
+    const scrollOffset = Math.max(0, Math.min(MAX_SCROLL, window.scrollY));
+    const transitionDuration = (scrollOffset / MAX_SCROLL) * SCROLL_TRANSITION_DURATION;
+    this.setState({transitionDuration});
+  }
+
 }
-
-Header.FULL_HEIGHT = FULL_HEIGHT;
