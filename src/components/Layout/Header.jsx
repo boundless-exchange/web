@@ -64,7 +64,6 @@ const STYLES = StyleSheet.create({
   navigation: {
     position: 'absolute',
     left: LOGO_FULL_WIDTH + sizes.SPACING.NORMAL,
-    right: sizes.SPACING.NORMAL,
     bottom: 0,
   },
 });
