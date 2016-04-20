@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import 'bowser';
 import 'chroma-js';
 import 'classlist-polyfill';
 import 'combined-reduction';
