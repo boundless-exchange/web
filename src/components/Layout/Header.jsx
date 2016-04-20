@@ -1,5 +1,6 @@
 import { Animatable, AnimationGroup } from 'react-web-animation';
 import { Link } from 'react-router';
+import bowser from 'bowser';
 import { StyleSheet } from 'react-look';
 import InlineSvg from 'svg-inline-react';
 
@@ -10,6 +11,9 @@ import Navigation from './Navigation';
 // Pre-calculated letter spacing to line up the logo text.
 const BOUNDLESS_SPACING = 0.475;
 const EXCHANGE_SPACING  = 0.5825;
+
+// 'cause WebKit can only handle integer line heights.
+const SAFARI_FUDGE = bowser.safari ? 0.6 : 0;
 
 // Pre-calculated width/height ratio of the icon.
 const ICON_ASPECT_RATIO = 1.25;
@@ -110,7 +114,7 @@ const KEYFRAMES = {
     {
       offset: 0,
       letterSpacing: `${EXCHANGE_SPACING}em`,
-      transform: 'translate(0, -0.075em)',
+      transform: `translate(-${SAFARI_FUDGE}em, -0.075em)`,
     },
     {
       offset: 1,
