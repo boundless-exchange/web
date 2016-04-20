@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { IndexLink } from 'react-router';
 import { PropTypes } from 'react';
@@ -117,7 +118,7 @@ export default class NavigationLink extends BaseComponent {
 
   _updateActive(props) {
     this.setState({
-      active: props.location.pathname === props.path,
+      active: _.startsWith(props.location.pathname, props.path),
     });
   }
 

@@ -1,8 +1,6 @@
-import { IndexLink } from 'react-router';
 import { StyleSheet } from 'react-look';
 
 import { BaseComponent } from '..';
-import { colors, fonts, sizes } from '../../constants';
 import NavigationLink from './NavigationLink';
 
 const STYLES = StyleSheet.create({
