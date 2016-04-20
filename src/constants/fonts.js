@@ -11,5 +11,17 @@ export function compactHeader(fontSize, letterSpacing = 0) {
 
 export const BODY = {
   fontFamily: 'Lato-Regular',
-  fontSize: 16,
+  lineHeight: 1.45,
+};
+
+export const HEADER_BASE = {
+  fontFamily: 'Fela-Light',
+  lineHeight: 0.75,
+};
+
+export const HEADER = {
+  MEDIUM: {
+    ...HEADER_BASE,
+    fontSize: 24,
+  },
 };
