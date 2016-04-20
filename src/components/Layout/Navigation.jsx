@@ -2,7 +2,7 @@ import chroma from 'chroma-js';
 import { StyleSheet } from 'react-look';
 
 import { BaseComponent } from '..';
-import { colors, fonts, sizes, styles } from '../../constants';
+import { colors, fonts, sizes } from '../../constants';
 import NavigationLink from './NavigationLink';
 
 const STYLES = StyleSheet.create({
