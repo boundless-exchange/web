@@ -5,6 +5,7 @@ import InlineSvg from 'svg-inline-react';
 
 import { BaseComponent } from '..';
 import { colors, fonts, sizes } from '../../constants';
+import Navigation from './Navigation';
 
 // Pre-calculated letter spacing to line up the logo text.
 const BOUNDLESS_SPACING = 0.475;
@@ -25,12 +26,12 @@ const LOGO_FULL_WIDTH = ICON_FULL_WIDTH + sizes.SPACING.NORMAL + ROW_FULL_WIDTH;
 
 const STYLES = StyleSheet.create({
   root: {
-    display: 'flex',
     maxWidth: sizes.MAX_CONTENT_WIDTH + sizes.SPACING.NORMAL * 2,
     margin: '0 auto',
     padding: sizes.SPACING.NORMAL,
   },
   logoLink: {
+    display: 'block',
     position: 'relative',
     color: colors.MONOCHROME.LIGHT,
     textDecoration: 'none',
@@ -56,8 +57,11 @@ const STYLES = StyleSheet.create({
     bottom: sizes.SPACING.NORMAL,
     right: sizes.SPACING.NORMAL,
   },
-  nav: {
-    flex: 1,
+  navigation: {
+    position: 'absolute',
+    left: LOGO_FULL_WIDTH + sizes.SPACING.NORMAL,
+    right: sizes.SPACING.NORMAL,
+    bottom: 0,
   },
 });
 
@@ -144,6 +148,7 @@ export default class Header extends BaseComponent {
             <Link to='/' className={STYLES.logoLink} title='Boundless Exchange'>
               {this._renderLogo()}
             </Link>
+            <Navigation className={STYLES.navigation} />
           </header>
         </Animatable>
       </AnimationGroup>
