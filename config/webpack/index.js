@@ -11,7 +11,7 @@ export const output = {
   path: config.buildDir,
   publicPath: '/',
   filename:      config.watch ? '[name].js' : '[name]-[chunkhash].js',
-  chunkFilename: config.watch ? '[name].js' : '[name]-[chunkhash].js',
+  chunkFilename: 'content/[name].js',
 };
 
 // https://webpack.github.io/docs/configuration.html#entry
