@@ -43,7 +43,7 @@
     "lodash": "^4.10.0",
     "normalize.css": "^4.1.1",
     "opener": "^1.4.1",
-    "react": "^15.0.1",
+    "react": "^15.0.2",
     "react-addons-shallow-compare": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-look": "1.0.0-beta8",
