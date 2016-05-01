@@ -16,6 +16,15 @@
           "value": "max-age=31536000, public"
         }
       ]
+    },
+    {
+      "source": "content/**/*.*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=86400, public"
+        }
+      ]
     }
   ]
 }
