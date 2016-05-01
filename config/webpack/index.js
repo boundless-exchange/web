@@ -42,6 +42,10 @@ export const module = {
       test: /\.(eot|ttf|woff2?)$/,
     },
     {
+      loader: 'babel!reactdown/webpack',
+      test: /\.md?$/,
+    },
+    {
       loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
       test: /\.css$/,
     },

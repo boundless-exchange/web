@@ -14,6 +14,8 @@ settings:
     webpack:
       config: ./config/webpack/es5
   import/parser: babel-eslint
+  import/ignore:
+    - \.md$
 
 parserOptions:
   ecmaFeatures:
