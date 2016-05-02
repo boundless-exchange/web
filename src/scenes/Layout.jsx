@@ -11,7 +11,8 @@ const STYLES = StyleSheet.create({
   html: {
     ...fonts.COPY,
     backgroundColor: colors.BACKGROUND,
-    // perspective: 50000,
+    perspective: 15000,
+    perspectiveOrigin: '50vh 50vh',
     height: '100%',
     transformStyle: 'preserve-3d',
   },
@@ -54,7 +55,6 @@ export default class Layout extends BaseComponent {
 
   _updatePerspective(x, y) {
     document.documentElement.style.transform = `rotateY(${this._rotate(1 - x)}) rotateX(${this._rotate(y)})`;
-    // document.documentElement.style.perspectiveOrigin = `${(1 - x) * 100}vh ${(1 - y) * 100}vh`;
   }
 
   _rotate(value) {
