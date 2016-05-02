@@ -21,7 +21,6 @@ const STYLES = StyleSheet.create({
     left: 0,
     top: 0,
     bottom: 0,
-    transform: 'rotateY(5deg)',
     transformStyle: 'preserve-3d',
   },
 });
