@@ -1,9 +1,9 @@
-import { browserHistory, Router } from 'react-router';
-import { LookRoot } from 'react-look';
-import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
 import * as reactDom from 'react-dom';
 import webfontloader from 'webfontloader';
+import { LookRoot } from 'react-look';
+import { Provider } from 'react-redux';
+import { browserHistory, Router } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import { createStore } from './store';
 
@@ -53,7 +53,16 @@ function reloadRoot() {
   // react-router doesn't support hot reloading yet; so we've got to blow it
   // all away.
   reactDom.unmountComponentAtNode(document.getElementById('root'));
+  resetStyles();
   renderRoot();
+}
+
+function resetStyles() {
+  const style = document.getElementById('component-styles');
+  for (let rule = style.sheet.cssRules[0]; rule; rule = style.sheet.cssRules[0]) {
+    style.sheet.deleteRule(rule);
+  }
+  style.textContent = '';
 }
 
 // Hot Reloading
