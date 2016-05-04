@@ -5,7 +5,7 @@ import { Navigation } from '../components/Layout';
 import { colors, fonts, sizes } from '../constants';
 
 // Maximum # of degrees the page will rotate in a particular direction.
-const ROTATION_MAX = 3;
+const ROTATION_MAX = 45;
 
 const STYLES = StyleSheet.create({
   html: {
