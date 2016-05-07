@@ -59,6 +59,7 @@ export default class Layout extends BaseComponent {
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this._onResize);
     document.addEventListener('mousemove', this._onMouseMove);
     document.addEventListener('scroll', this._onScroll);
     document.addEventListener('keydown', this._onKeyDown);
@@ -69,6 +70,7 @@ export default class Layout extends BaseComponent {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
     document.removeEventListener('mousemove', this._onMouseMove);
     document.removeEventListener('scroll', this._onScroll);
     document.removeEventListener('keydown', this._onKeyDown);
@@ -96,6 +98,10 @@ export default class Layout extends BaseComponent {
         </div>
       </div>
     );
+  }
+
+  _onResize = _event => {
+    this._updatePerspective();
   }
 
   _onMouseMove = event => {
