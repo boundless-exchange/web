@@ -1,7 +1,8 @@
 // One "depth level" worth of pixels.
-export const DEPTH = 12;
+export const DEPTH = 16;
 
 export const SPACING = {
+  TINY: 4,
   SMALL: 12,
   NORMAL: 24,
 };

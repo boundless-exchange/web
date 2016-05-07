@@ -16,17 +16,22 @@ export const HEADER_BASE = {
   lineHeight: 0.75,
 };
 
+export const SIZES = {
+  COPY: 16,
+  HEADER: 24,
+};
+
 // Semantic Styles
 
 export const COPY = {
   fontFamily: 'Lato-Regular',
   lineHeight: 1.45,
-  fontSize: 16,
+  fontSize: SIZES.COPY,
 };
 
 export const HEADER = {
   MEDIUM: {
     ...HEADER_BASE,
-    fontSize: 24,
+    fontSize: SIZES.HEADER,
   },
 };

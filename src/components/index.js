@@ -1,3 +1,3 @@
 export BaseComponent from './BaseComponent';
-export Layer from './Layer';
+export Button from './Button';
 export Raised from './Raised';

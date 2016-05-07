@@ -26,7 +26,7 @@ const STYLES = StyleSheet.create({
     position: 'relative',
   },
   icon: {
-    fill: '#ff3952',
+    fill: colors.ACCENT,
     height: HEIGHT,
     width: HEIGHT * ICON_ASPECT_RATIO,
     position: 'absolute',

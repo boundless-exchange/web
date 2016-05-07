@@ -37,7 +37,11 @@ export default class ArticlesNavigation extends BaseComponent {
   }
 
   _renderArticle = (article, key) => {
-    return <Section key={key} title={article.title} />;
+    let pages;
+    if (key === this.props.articleKey) {
+      pages = <div>We have a match!</div>;
+    }
+    return <Section key={key} title={article.title}>{pages}</Section>;
   }
 
 }
