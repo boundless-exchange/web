@@ -14,7 +14,7 @@ export function createRoutes() {
   return (
     <Route path='/' component={scenes.Layout}>
       <IndexRoute component={scenes.Splash} />
-      <Route path='/world-builder' component={scenes.ArticleCollection} articles={loadWorldBuilderArticles()} />
+      <Route path='/world-builder/:article' component={scenes.ArticleCollection} articles={loadWorldBuilderArticles()} />
       <Route path='*' component={scenes.NotFound} />
     </Route>
   );

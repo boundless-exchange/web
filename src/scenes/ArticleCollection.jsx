@@ -8,6 +8,9 @@ export default class ArticleCollection extends BaseComponent {
     route: PropTypes.shape({
       articles: PropTypes.instanceOf(Promise).isRequired,
     }).isRequired,
+    params: PropTypes.shape({
+      article: PropTypes.string.isRequired,
+    }).isRequired,
   }
 
   state = {
@@ -20,7 +23,8 @@ export default class ArticleCollection extends BaseComponent {
 
   render() {
     if (!this.state.articles) return null;
-    return <p>{JSON.stringify(this.state.articles)}</p>;
+    const Document = this.state.articles[this.props.params.article].default;
+    return <Document />;
   }
 
 }

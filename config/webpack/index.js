@@ -54,6 +54,10 @@ export const module = {
 
 // https://webpack.github.io/docs/configuration.html#resolve
 export const resolve = {
+  // https://github.com/andreypopp/reactdown/issues/17
+  alias: {
+    'boundless-exchange-article-components': path.join(config.srcDir, 'components', 'Article'),
+  },
   extensions: ['', '.jsx', '.js'],
 };
 
