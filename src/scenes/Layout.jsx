@@ -7,6 +7,7 @@ import { colors, fonts, sizes } from '../constants';
 
 // Maximum # of degrees the page will rotate in a particular direction.
 const ROTATION_MAX = 4.5;
+const DEBUG_ROTATION_MAX = 90;
 
 const STYLES = StyleSheet.create({
   html: {
@@ -48,6 +49,8 @@ export default class Layout extends BaseComponent {
     navigation: PropTypes.node.isRequired,
   }
 
+  _rotationMax = ROTATION_MAX;
+
   componentWillMount() {
     // As the top level component, we own the page-wide styles, too.
     document.documentElement.classList.add(STYLES.html);
@@ -58,6 +61,8 @@ export default class Layout extends BaseComponent {
   componentDidMount() {
     document.addEventListener('mousemove', this._onMouseMove);
     document.addEventListener('scroll', this._onScroll);
+    document.addEventListener('keydown', this._onKeyDown);
+    document.addEventListener('keyup', this._onKeyDown);
 
     this._updateRotation(0.5, 0.5);
     this._updatePerspective();
@@ -66,6 +71,8 @@ export default class Layout extends BaseComponent {
   componentWillUnmount() {
     document.removeEventListener('mousemove', this._onMouseMove);
     document.removeEventListener('scroll', this._onScroll);
+    document.removeEventListener('keydown', this._onKeyDown);
+    document.removeEventListener('keyup', this._onKeyDown);
 
     // Clean up our mess when hot reloading
     document.documentElement.classList.remove(STYLES.html);
@@ -100,12 +107,29 @@ export default class Layout extends BaseComponent {
     this._updatePerspective();
   }
 
-  _updateRotation(x, y) {
+  _onKeyDown = event => {
+    const shouldDebug = event.altKey && event.shiftKey;
+    this._setRotationMax(shouldDebug ? DEBUG_ROTATION_MAX : ROTATION_MAX);
+  }
+
+  _onKeyUp = _event => {
+    this._setRotationMax(ROTATION_MAX);
+  }
+
+  _setRotationMax(newMax) {
+    if (this._rotationMax === newMax) return;
+    this._rotationMax = newMax;
+    this._updateRotation();
+  }
+
+  _updateRotation(x = this._rotationX, y = this._rotationY) {
+    this._rotationX = x;
+    this._rotationY = y;
     this._root.style.transform = `rotateY(${this._rotate(1 - x)}) rotateX(${this._rotate(y)})`;
   }
 
   _rotate(value) {
-    return `${((1 - value) * ROTATION_MAX * 2) - ROTATION_MAX}deg`;
+    return `${((1 - value) * this._rotationMax * 2) - this._rotationMax}deg`;
   }
 
   _updatePerspective() {
