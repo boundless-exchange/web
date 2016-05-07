@@ -33,6 +33,9 @@ const STYLES = StyleSheet.create({
   navigation: {
     marginRight: sizes.SPACING.NORMAL,
   },
+  logo: {
+    marginBottom: sizes.SPACING.NORMAL,
+  },
   content: {
     flex: 1,
     backgroundColor: colors.DIALOG.FOREGROUND,
@@ -86,8 +89,12 @@ export default class Layout extends BaseComponent {
     return (
       <div className={STYLES.root} ref={r => this._root = r}>
         <div className={STYLES.navigation}>
-          <Raised depth={3}>
-            <Logo />
+          <div className={STYLES.logo}>
+            <Raised depth={3} className={STYLES.logo}>
+              <Logo />
+            </Raised>
+          </div>
+          <Raised depth={-2}>
             {this.props.navigation}
           </Raised>
         </div>
