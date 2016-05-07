@@ -30,8 +30,14 @@ const STYLES = StyleSheet.create({
     transformStyle: 'preserve-3d',
     perspective: 50000,
   },
+  navigationContent: {
+    position: 'relative',
+    transformStyle: 'preserve-3d',
+    zIndex: 1,
+  },
   navigation: {
     marginRight: sizes.SPACING.NORMAL,
+    transformStyle: 'preserve-3d',
   },
   logo: {
     position: 'relative',
@@ -39,11 +45,14 @@ const STYLES = StyleSheet.create({
     zIndex: 100,
   },
   content: {
+    position: 'relative',
+    transformStyle: 'preserve-3d',
     flex: 1,
     backgroundColor: colors.DIALOG.FOREGROUND,
     color: colors.BACKGROUND,
     borderRadius: sizes.BORDER_RADIUS,
     padding: sizes.SPACING.NORMAL,
+    zIndex: 10,
   },
 });
 
@@ -96,9 +105,11 @@ export default class Layout extends BaseComponent {
               <Logo />
             </Raised>
           </div>
-          <Raised depth={-2}>
-            {this.props.navigation}
-          </Raised>
+          <div className={STYLES.navigationContent}>
+            <Raised depth={-2}>
+              {this.props.navigation}
+            </Raised>
+          </div>
         </div>
         <div className={STYLES.content}>
           <Raised depth={1}>
