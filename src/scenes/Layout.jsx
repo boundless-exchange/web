@@ -1,60 +1,56 @@
+import { PropTypes } from 'react';
 import { StyleSheet } from 'react-look';
 
-import { BaseComponent } from '../components';
-import { Navigation } from '../components/Layout';
+import { BaseComponent, Raised } from '../components';
+import { Logo } from '../components/Layout';
 import { colors, fonts, sizes } from '../constants';
 
 // Maximum # of degrees the page will rotate in a particular direction.
-const ROTATION_MAX = 4;
+const ROTATION_MAX = 4.5;
 
 const STYLES = StyleSheet.create({
   html: {
     ...fonts.COPY,
     backgroundColor: colors.BACKGROUND,
     padding: sizes.SPACING.NORMAL,
+    height: '100%',
+  },
+  body: {
+    height: '100%',
+  },
+  reactRoot: {
+    height: '100%',
   },
   root: {
-    display: 'table-row',
+    display: 'flex',
     width: '100%',
+    minHeight: '100%',
     transformStyle: 'preserve-3d',
     perspective: 50000,
   },
-  navigationContainer: {
-    display: 'table-cell',
-    verticalAlign: 'top',
-    padding: sizes.SPACING.NORMAL,
-  },
-  contentContainer: {
-    display: 'table-cell',
-    width: '100%',
-    position: 'relative',
-    verticalAlign: 'top',
-    padding: sizes.SPACING.NORMAL,
-  },
   navigation: {
-    transformStyle: 'preserve-3d',
-  },
-  contentBackground: {
-    backgroundColor: colors.DIALOG.FOREGROUND,
-    position: 'absolute',
-    top: sizes.SPACING.NORMAL,
-    left: sizes.SPACING.NORMAL,
-    right: sizes.SPACING.NORMAL,
-    bottom: sizes.SPACING.NORMAL,
-    borderRadius: sizes.BORDER_RADIUS,
+    marginRight: sizes.SPACING.NORMAL,
   },
   content: {
+    flex: 1,
+    backgroundColor: colors.DIALOG.FOREGROUND,
+    borderRadius: sizes.BORDER_RADIUS,
     padding: sizes.SPACING.NORMAL,
-    position: 'relative',
-    zIndex: 1,
   },
 });
 
 export default class Layout extends BaseComponent {
 
+  static propTypes = {
+    scene: PropTypes.node.isRequired,
+    navigation: PropTypes.node.isRequired,
+  }
+
   componentWillMount() {
     // As the top level component, we own the page-wide styles, too.
     document.documentElement.classList.add(STYLES.html);
+    document.body.classList.add(STYLES.body);
+    document.getElementById('root').classList.add(STYLES.reactRoot);
   }
 
   componentDidMount() {
@@ -68,17 +64,26 @@ export default class Layout extends BaseComponent {
   componentWillUnmount() {
     document.removeEventListener('mousemove', this._onMouseMove);
     document.removeEventListener('scroll', this._onScroll);
+
+    // Clean up our mess when hot reloading
+    document.documentElement.classList.remove(STYLES.html);
+    document.body.classList.remove(STYLES.body);
+    document.getElementById('root').classList.remove(STYLES.reactRoot);
   }
 
   render() {
     return (
       <div className={STYLES.root} ref={r => this._root = r}>
-        <div className={STYLES.navigationContainer}>
-          <Navigation className={STYLES.navigation} />
+        <div className={STYLES.navigation}>
+          <Raised depth={3}>
+            <Logo />
+            {this.props.navigation}
+          </Raised>
         </div>
-        <div className={STYLES.contentContainer}>
-          <div className={STYLES.contentBackground} />
-          <div className={STYLES.content}>{this.props.children}</div>
+        <div className={STYLES.content}>
+          <Raised depth={1}>
+            {this.props.scene}
+          </Raised>
         </div>
       </div>
     );

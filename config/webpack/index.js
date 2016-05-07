@@ -56,7 +56,7 @@ export const module = {
 export const resolve = {
   // https://github.com/andreypopp/reactdown/issues/17
   alias: {
-    'boundless-exchange-article-components': path.join(config.srcDir, 'components', 'Article'),
+    'boundless-exchange-article-components': path.join(config.srcDir, 'components', 'Articles'),
   },
   extensions: ['', '.jsx', '.js'],
 };

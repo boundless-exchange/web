@@ -154,6 +154,7 @@ rules:
   import/imports-first: 2
 
   # https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules
+  react/display-name: 0
   react/forbid-prop-types: [2, {forbid: ['array', 'object']}]
   react/no-multi-comp: [2, {ignoreStateless: true}]
   react/no-string-refs: 2

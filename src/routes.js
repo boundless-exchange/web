@@ -1,20 +1,18 @@
-import { IndexRoute, Route } from 'react-router';
+import { Redirect, Route } from 'react-router';
 
 import * as scenes from './scenes';
-
-function loadWorldBuilderArticles() {
-  return new Promise((resolve, _reject) => {
-    require.ensure([], require => {
-      resolve(require('./articles/world-builder/guide'));
-    }, 'world-builder/guide');
-  });
-}
+import * as navigation from './navigation';
+import * as articles from './articles';
 
 export function createRoutes() {
   return (
-    <Route path='/' component={scenes.Layout}>
-      <IndexRoute component={scenes.Splash} />
-      <Route path='/world-builder/:article' component={scenes.ArticleCollection} articles={loadWorldBuilderArticles()} />
+    <Route component={scenes.Layout}>
+      <Redirect from='/' to='world-builder/guide/intro' />
+      <Route
+        path='world-builder/:article(/:page)'
+        components={{navigation: navigation.Articles, scene: scenes.Articles}}
+        articles={articles.worldBuilder}
+      />
       <Route path='*' component={scenes.NotFound} />
     </Route>
   );
