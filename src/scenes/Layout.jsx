@@ -34,7 +34,9 @@ const STYLES = StyleSheet.create({
     marginRight: sizes.SPACING.NORMAL,
   },
   logo: {
+    position: 'relative',
     marginBottom: sizes.SPACING.NORMAL,
+    zIndex: 100,
   },
   content: {
     flex: 1,
