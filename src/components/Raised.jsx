@@ -9,12 +9,15 @@ const MAX_DEPTH = 9;
 
 const STYLES = StyleSheet.create({
   root: {
+    position: 'relative',
     transformStyle: 'preserve-3d',
     ..._.fromPairs(_.times(MAX_DEPTH, depth => [`depth=${depth - MAX_DEPTH}`, {
       transform: `translateZ(${sizes.DEPTH * (depth - MAX_DEPTH)}px)`,
+      zIndex: depth + 1,
     }])),
     ..._.fromPairs(_.times(MAX_DEPTH, depth => [`depth=${depth + 1}`, {
       transform: `translateZ(${sizes.DEPTH * (depth + 1)}px)`,
+      zIndex: depth + 1 + MAX_DEPTH,
     }])),
   },
 });

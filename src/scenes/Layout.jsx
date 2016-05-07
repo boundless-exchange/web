@@ -31,28 +31,22 @@ const STYLES = StyleSheet.create({
     perspective: 50000,
   },
   navigationContent: {
-    position: 'relative',
     transformStyle: 'preserve-3d',
-    zIndex: 1,
   },
   navigation: {
     marginRight: sizes.SPACING.NORMAL,
     transformStyle: 'preserve-3d',
   },
   logo: {
-    position: 'relative',
     marginBottom: sizes.SPACING.NORMAL,
-    zIndex: 100,
   },
   content: {
-    position: 'relative',
     transformStyle: 'preserve-3d',
     flex: 1,
     backgroundColor: colors.DIALOG.FOREGROUND,
     color: colors.BACKGROUND,
     borderRadius: sizes.BORDER_RADIUS,
     padding: sizes.SPACING.NORMAL,
-    zIndex: 10,
   },
 });
 
