@@ -16,7 +16,7 @@ loadFonts()
   .then(renderRoot);
 
 function renderRoot() {
-  const routes      = require('./routes').createRoutes();
+  const routes      = require('./routes').createRoutes(store);
   const styleConfig = require('./styleConfig').default;
 
   const root = (

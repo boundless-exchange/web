@@ -1,12 +1,20 @@
-import { routerReducer } from 'react-router-redux';
 import * as redux from 'redux';
 import combinedReduction from 'combined-reduction';
 import thunk from 'redux-thunk';
+import { combineInteractions } from 'redux-interactions';
+import { routerReducer } from 'react-router-redux';
+
+import * as interactions from './interactions';
 
 export function createRootReducer() {
-  return combinedReduction({
-    routing: routerReducer,
-  });
+  return combinedReduction(
+    combineInteractions({
+      articles: interactions.articles,
+    }),
+    {
+      routing: routerReducer,
+    },
+  );
 }
 
 export function createRootEnhancer() {

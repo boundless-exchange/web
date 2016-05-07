@@ -12,6 +12,7 @@ const STYLES = StyleSheet.create({
   html: {
     ...fonts.COPY,
     backgroundColor: colors.BACKGROUND,
+    color: colors.FOREGROUND,
     padding: sizes.SPACING.NORMAL,
     height: '100%',
   },
@@ -34,6 +35,7 @@ const STYLES = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: colors.DIALOG.FOREGROUND,
+    color: colors.BACKGROUND,
     borderRadius: sizes.BORDER_RADIUS,
     padding: sizes.SPACING.NORMAL,
   },
