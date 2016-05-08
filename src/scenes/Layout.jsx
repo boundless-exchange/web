@@ -49,6 +49,13 @@ const STYLES = StyleSheet.create({
   },
 });
 
+StyleSheet.addCSS({
+  '::selection': {
+    backgroundColor: colors.ACTIVE_HIGHLIGHT,
+    color: colors.FOREGROUND,
+  },
+});
+
 export default class Layout extends BaseComponent {
 
   static propTypes = {
