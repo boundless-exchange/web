@@ -12,8 +12,13 @@ self.addEventListener('fetch', event => {
         if (isHtmlRequest(request)) {
           return caches.match('/')
             .then(htmlResponse => {
-              if (htmlResponse) return htmlResponse;
-              return fetchAndCache('/', {cache: 'force-cache'});
+              if (htmlResponse) {
+                // Fetch regardless to make sure the next fetch is fresh.
+                fetchAndCache('/');
+                return htmlResponse;
+              } else {
+                return fetchAndCache('/', {cache: 'force-cache'});
+              }
             });
         } else {
           return fetchAndCache(request);
