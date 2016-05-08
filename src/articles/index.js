@@ -1,1 +1,3 @@
-export * as worldBuilder from './world-builder';
+export default {
+  'world-builder': require('./world-builder'),
+};

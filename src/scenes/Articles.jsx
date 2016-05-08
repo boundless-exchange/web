@@ -10,6 +10,8 @@ import * as interactions from '../interactions';
 
 import NotFound from './NotFound';
 
+const GITHUB_SRC = `https://github.com/boundless-exchange/web/edit/master/src`;
+
 const STYLES = StyleSheet.create({
   root: {
     position: 'relative',
@@ -25,19 +27,21 @@ const STYLES = StyleSheet.create({
 });
 
 @connect((state, props) => {
-  const category = props.route.category;
+  const categoryKey = props.route.categoryKey;
   const articleKey = props.params.article;
   return {
+    categoryKey,
+    articleKey,
     pageKey: props.params.page || interactions.articles.DEFAULT_PAGE,
-    isLoading: interactions.articles.isLoading(state, category, articleKey),
-    article: interactions.articles.get(state, category, articleKey),
+    isLoading: interactions.articles.isLoading(state, categoryKey, articleKey),
+    article: interactions.articles.get(state, categoryKey, articleKey),
   };
 })
 export default class ArticlesScene extends BaseComponent {
 
   static propTypes = {
     route: PropTypes.shape({
-      category: PropTypes.string.isRequired,
+      categoryKey: PropTypes.string.isRequired,
     }).isRequired,
     params: PropTypes.shape({
       article: PropTypes.string.isRequired,
@@ -46,8 +50,9 @@ export default class ArticlesScene extends BaseComponent {
   }
 
   render() {
-    if (this.props.isLoading) return null;
-    const page = _.get(this.props.article, this.props.pageKey);
+    const {article, articleKey, categoryKey, isLoading, pageKey} = this.props;
+    if (isLoading) return null;
+    const page = _.get(article, pageKey);
     if (!page) return <NotFound />;
 
     return (
@@ -55,7 +60,7 @@ export default class ArticlesScene extends BaseComponent {
         <div className={STYLES.controls}>
           <Button
             link
-            to='https://github.com/boundless-exchange/web/edit/master/src/articles/world-builder/guide/biomes.md'
+            to={`${GITHUB_SRC}/articles/${categoryKey}/${articleKey}/${pageKey}.md`}
             title='Edit on GitHub'
           >
             Edit

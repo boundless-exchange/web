@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import deepUpdate from 'deep-update';
 import { Interactions, reducer, selector } from 'redux-interactions';
 
-import * as articleCategories from '../articles';
+import articleCategories from '../articles';
 
 export default new class ArticleInteractions extends Interactions {
 
@@ -14,51 +14,51 @@ export default new class ArticleInteractions extends Interactions {
   };
 
   @selector
-  get(scopedState, category, articleKey) {
-    return _.get(scopedState, ['content', category, articleKey]);
+  get(scopedState, categoryKey, articleKey) {
+    return _.get(scopedState, ['content', categoryKey, articleKey]);
   }
 
   @selector
-  isLoading(scopedState, category, articleKey) {
-    return !!_.get(scopedState, ['loading', category, articleKey]);
+  isLoading(scopedState, categoryKey, articleKey) {
+    return !!_.get(scopedState, ['loading', categoryKey, articleKey]);
   }
 
-  load(category, articleKey) {
+  load(categoryKey, articleKey) {
     return async (dispatch, getState) => {
-      const articles = articleCategories[category]; // eslint-disable-line import/namespace
+      const articles = articleCategories[categoryKey]; // eslint-disable-line import/namespace
       if (!articles) {
-        throw new TypeError(`Unknown article category: ${category}`);
+        throw new TypeError(`Unknown article category: ${categoryKey}`);
       }
       if (!articles[articleKey]) {
-        throw new TypeError(`Unknown article: ${category}/${articleKey}`);
+        throw new TypeError(`Unknown article: ${categoryKey}/${articleKey}`);
       }
-      if (this.get(getState(), category, articleKey)) return;
+      if (this.get(getState(), categoryKey, articleKey)) return;
 
-      dispatch(this._loading(category, articleKey, true));
+      dispatch(this._loading(categoryKey, articleKey, true));
       try {
         const article = await articles[articleKey].load();
-        dispatch(this._loaded(category, articleKey, article));
+        dispatch(this._loaded(categoryKey, articleKey, article));
       } catch (error) {
-        dispatch(this._loadFailed(category, articleKey));
+        dispatch(this._loadFailed(categoryKey, articleKey));
         throw error;
       }
     };
   }
 
   @reducer
-  _loading(scopedState, category, articleKey) {
-    return deepUpdate(scopedState, ['loading', category, articleKey], {$set: true});
+  _loading(scopedState, categoryKey, articleKey) {
+    return deepUpdate(scopedState, ['loading', categoryKey, articleKey], {$set: true});
   }
 
   @reducer
-  _loaded(scopedState, category, articleKey, article) {
-    scopedState = deepUpdate(scopedState, ['loading', category, articleKey], {$set: false});
-    return deepUpdate(scopedState, ['content', category, articleKey], {$set: article});
+  _loaded(scopedState, categoryKey, articleKey, article) {
+    scopedState = deepUpdate(scopedState, ['loading', categoryKey, articleKey], {$set: false});
+    return deepUpdate(scopedState, ['content', categoryKey, articleKey], {$set: article});
   }
 
   @reducer
-  _loadFailed(scopedState, category, articleKey) {
-    return deepUpdate(scopedState, ['loading', category, articleKey], {$set: false});
+  _loadFailed(scopedState, categoryKey, articleKey) {
+    return deepUpdate(scopedState, ['loading', categoryKey, articleKey], {$set: false});
   }
 
 };

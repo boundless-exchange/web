@@ -103,7 +103,7 @@ export default class Button extends BaseComponent {
     super(props, context, ...args);
 
     this.state = {
-      active: context.router.isActive(props.to),
+      active: this._isActive(props.to, context.router),
     };
   }
 
@@ -111,7 +111,7 @@ export default class Button extends BaseComponent {
     // react-look actively fights react-router's Link for control of className.
     //
     // So, we manage it ourselves instead.
-    this.setState({active: this.context.router.isActive(nextProps.to)});
+    this.setState({active: this._isActive(nextProps.to)});
   }
 
   render() {
@@ -123,7 +123,7 @@ export default class Button extends BaseComponent {
     };
 
     if (this._isExternal()) {
-      return <a {...commonProps} href={this.props.to}>{this._renderContent()}</a>;
+      return <a {...commonProps} target='_blank' href={this.props.to}>{this._renderContent()}</a>;
     } else {
       return <Link {...commonProps} to={this.props.to}>{this._renderContent()}</Link>;
     }
@@ -148,8 +148,16 @@ export default class Button extends BaseComponent {
     this.setState({hover: false});
   }
 
-  _isExternal() {
-    return this.props.to.match(/^[a-z]+:\/\//);
+  _isActive(url, router = this.context.router) {
+    if (this._isExternal(url)) {
+      return false;
+    } else {
+      return router.isActive(url);
+    }
+  }
+
+  _isExternal(url = this.props.to) {
+    return url.match(/^[a-z]+:\/\//);
   }
 
 }

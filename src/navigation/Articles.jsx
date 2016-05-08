@@ -2,29 +2,27 @@ import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'react';
 
-import * as articleCategories from '../articles';
 import * as interactions from '../interactions';
+import articleCategories from '../articles';
 import { BaseComponent, Button } from '../components';
 
 import Section from './Section';
 
 @connect((state, props) => {
-  const category = props.route.category;
+  const categoryKey = props.route.categoryKey;
   const articleKey = props.params.article;
   return {
-    category,
+    categoryKey,
     articleKey,
-    categoryKey: props.route.categoryKey,
     pageKey: props.params.page || interactions.articles.DEFAULT_PAGE,
-    article: interactions.articles.get(state, category, articleKey),
-    isLoading: interactions.articles.isLoading(state, category, articleKey),
+    article: interactions.articles.get(state, categoryKey, articleKey),
+    isLoading: interactions.articles.isLoading(state, categoryKey, articleKey),
   };
 })
 export default class ArticlesNavigation extends BaseComponent {
 
   static propTypes = {
     route: PropTypes.shape({
-      category: PropTypes.string.isRequired,
       categoryKey: PropTypes.string.isRequired,
     }).isRequired,
     params: PropTypes.shape({
@@ -34,7 +32,7 @@ export default class ArticlesNavigation extends BaseComponent {
   }
 
   render() {
-    const articles = articleCategories[this.props.category]; // eslint-disable-line import/namespace
+    const articles = articleCategories[this.props.categoryKey]; // eslint-disable-line import/namespace
     return <div>{_.map(articles, this._renderArticle)}</div>;
   }
 
