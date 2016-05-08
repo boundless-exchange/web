@@ -1,12 +1,28 @@
 import * as _ from 'lodash';
-import { connect } from 'react-redux';
 import { PropTypes } from 'react';
+import { StyleSheet } from 'react-look';
+import { connect } from 'react-redux';
 
-import { BaseComponent } from '../components';
+import { BaseComponent, Button, Raised } from '../components';
+import { sizes } from '../constants';
 import { Heading } from '../components/Articles';
 import * as interactions from '../interactions';
 
 import NotFound from './NotFound';
+
+const STYLES = StyleSheet.create({
+  root: {
+    position: 'relative',
+    padding: sizes.SPACING.NORMAL,
+    transformStyle: 'preserve-3d',
+  },
+  controls: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    transformStyle: 'preserve-3d',
+  },
+});
 
 @connect((state, props) => {
   const category = props.route.category;
@@ -35,9 +51,22 @@ export default class ArticlesScene extends BaseComponent {
     if (!page) return <NotFound />;
 
     return (
-      <section>
-        <Heading level={0}>{page.metadata.title}</Heading>
-        <page.default />
+      <section className={STYLES.root}>
+        <div className={STYLES.controls}>
+          <Button
+            link
+            to='https://github.com/boundless-exchange/web/edit/master/src/articles/world-builder/guide/biomes.md'
+            title='Edit on GitHub'
+          >
+            Edit
+          </Button>
+        </div>
+        <div className={STYLES.content}>
+          <Raised depth={1}>
+            <Heading level={0}>{page.metadata.title}</Heading>
+            <page.default />
+          </Raised>
+        </div>
       </section>
     );
   }

@@ -45,7 +45,7 @@ export default class ArticlesNavigation extends BaseComponent {
     }
 
     const path = `/${this.props.categoryKey}/${key}`;
-    const title = <Button highlight to={path} title={article.title}>{article.title}</Button>;
+    const title = <Button navigation highlight to={path} title={article.title}>{article.title}</Button>;
 
     return <Section key={key} title={title}>{pages}</Section>;
   }
@@ -54,7 +54,7 @@ export default class ArticlesNavigation extends BaseComponent {
     if (key === interactions.articles.DEFAULT_PAGE) return null;
     const title = page.metadata.title;
     const path = `/${this.props.categoryKey}/${this.props.articleKey}/${key}`;
-    return <Button key={key} to={path} title={title}>{title}</Button>;
+    return <Button navigation key={key} to={path} title={title}>{title}</Button>;
   }
 
 }

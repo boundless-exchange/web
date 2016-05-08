@@ -46,7 +46,6 @@ const STYLES = StyleSheet.create({
     backgroundColor: colors.DIALOG.FOREGROUND,
     color: colors.BACKGROUND,
     borderRadius: sizes.BORDER_RADIUS,
-    padding: sizes.SPACING.NORMAL,
   },
 });
 
@@ -106,9 +105,7 @@ export default class Layout extends BaseComponent {
           </div>
         </div>
         <div className={STYLES.content}>
-          <Raised depth={1}>
-            {this.props.scene}
-          </Raised>
+          {this.props.scene}
         </div>
       </div>
     );
