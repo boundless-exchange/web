@@ -115,22 +115,29 @@ export default class Button extends BaseComponent {
   }
 
   render() {
-    return (
-      <Link
-        className={STYLES.root}
-        onMouseOver={this._onMouseOver}
-        onMouseOut={this._onMouseOut}
-        to={this.props.to}
-        title={this.props.title}
-      >
-        <div className={STYLES.shadow} />
-        <div className={STYLES.content}>
-          <div className={STYLES.contentInner}>
-            <Raised depth={1}>{this.props.children}</Raised>
-          </div>
+    const commonProps = {
+      className: STYLES.root,
+      onMouseOver: this._onMouseOver,
+      onMouseOut: this._onMouseOut,
+      title: this.props.title,
+    };
+
+    if (this._isExternal()) {
+      return <a {...commonProps} href={this.props.to}>{this._renderContent()}</a>;
+    } else {
+      return <Link {...commonProps} to={this.props.to}>{this._renderContent()}</Link>;
+    }
+  }
+
+  _renderContent() {
+    return [
+      <div key='shadow' className={STYLES.shadow} />,
+      <div key='content' className={STYLES.content}>
+        <div className={STYLES.contentInner}>
+          <Raised depth={1}>{this.props.children}</Raised>
         </div>
-      </Link>
-    );
+      </div>,
+    ];
   }
 
   _onMouseOver = () => {
@@ -139,6 +146,10 @@ export default class Button extends BaseComponent {
 
   _onMouseOut = () => {
     this.setState({hover: false});
+  }
+
+  _isExternal() {
+    return this.props.to.match(/^[a-z]+:\/\//);
   }
 
 }
