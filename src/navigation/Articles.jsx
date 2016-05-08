@@ -40,11 +40,11 @@ export default class ArticlesNavigation extends BaseComponent {
 
   _renderArticle = (article, key) => {
     let pages;
-    if (key === this.props.articleKey) {
+    if (key === this.props.articleKey && this.props.article) {
       pages = <div>{_.map(this.props.article, this._renderPage)}</div>;
     }
 
-    const path = `/${this.props.categoryKey}/${this.props.articleKey}`;
+    const path = `/${this.props.categoryKey}/${key}`;
     const title = <Button highlight to={path} title={article.title}>{article.title}</Button>;
 
     return <Section key={key} title={title}>{pages}</Section>;
