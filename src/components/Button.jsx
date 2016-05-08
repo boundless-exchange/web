@@ -8,7 +8,6 @@ import { PropTypes } from 'react';
 import { animation, colors, fonts, sizes } from '../constants';
 
 import BaseComponent from './BaseComponent';
-import Raised from './Raised';
 
 const STYLES = StyleSheet.create({
   root: {
@@ -21,24 +20,30 @@ const STYLES = StyleSheet.create({
     'link=true': {
       color: colors.ACTIVE,
     },
+    'inline=true': {
+      display: 'inline-block',
+    },
     'hover=true': {
       color: colors.FOREGROUND,
     },
   },
   shadow: {
     position: 'absolute',
-    transform: `translateZ(${sizes.DEPTH * -0.95}px)`,
+    transform: `translateZ(${sizes.DEPTH * 0.15}px)`,
     transition: `opacity ${animation.DEFAULT}`,
     left: 0,
     top: 0,
     right: 0,
     bottom: 0,
     backgroundColor: colors.DIALOG.SHADOW,
-    boxShadow: `0 0 3px 2px ${colors.DIALOG.SHADOW}`,
+    boxShadow: `0 0 4px 1px ${colors.DIALOG.SHADOW}`,
     zIndex: 1,
-    opacity: 0.15,
+    opacity: 0.0,
+    'inline=true': {
+      left: -sizes.SPACING.TINY,
+      right: -sizes.SPACING.TINY,
+    },
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
       opacity: 0.3,
       zIndex: 2,
     },
@@ -55,7 +60,13 @@ const STYLES = StyleSheet.create({
     padding: sizes.SPACING.SMALL,
     cursor: 'pointer',
     userSelect: 'none',
+    borderRadius: sizes.BORDER_RADIUS,
+    'inline=true': {
+      padding: `0 ${sizes.SPACING.TINY}px`,
+      margin: `0 ${-sizes.SPACING.TINY}px`,
+    },
     'navigation=true': {
+      borderRadius: 0,
       borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACTIVE).alpha(0).css()}`,
       'active=true': {
         borderRight: `${sizes.BORDER.THICK}px solid ${colors.ACCENT}`,
@@ -73,7 +84,9 @@ const STYLES = StyleSheet.create({
     },
   },
   contentInner: {
-    ...fonts.HEADING[6],
+    'inline=false': {
+      ...fonts.HEADING[6],
+    },
   },
 });
 
@@ -86,6 +99,7 @@ export default class Button extends BaseComponent {
     depth: PropTypes.number.isRequired,
     highlight: PropTypes.bool,
     link: PropTypes.bool,
+    inline: PropTypes.bool,
     navigation: PropTypes.bool,
   };
 
@@ -133,9 +147,7 @@ export default class Button extends BaseComponent {
     return [
       <div key='shadow' className={STYLES.shadow} />,
       <div key='content' className={STYLES.content}>
-        <div className={STYLES.contentInner}>
-          <Raised depth={1}>{this.props.children}</Raised>
-        </div>
+        <div className={STYLES.contentInner}>{this.props.children}</div>
       </div>,
     ];
   }

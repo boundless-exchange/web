@@ -28,7 +28,7 @@ const STYLES = StyleSheet.create({
     width: '100%',
     minHeight: '100%',
     transformStyle: 'preserve-3d',
-    perspective: 50000,
+    perspective: 2000,
   },
   navigationContent: {
     transformStyle: 'preserve-3d',
@@ -101,7 +101,7 @@ export default class Layout extends BaseComponent {
       <div className={STYLES.root} ref={r => this._root = r}>
         <div className={STYLES.navigation}>
           <div className={STYLES.logo}>
-            <Raised depth={3} className={STYLES.logo}>
+            <Raised depth={1} className={STYLES.logo}>
               <Logo />
             </Raised>
           </div>

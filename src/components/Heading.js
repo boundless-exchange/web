@@ -42,7 +42,7 @@ export default class Heading extends BaseComponent {
   render() {
     const Component = `h${this.props.level}`;
     return (
-      <Component className={STYLES.root}>
+      <Component className={`${STYLES.root} ${this.props.className || ''}`}>
         <span className={STYLES.content}>
           {this.props.children}
         </span>

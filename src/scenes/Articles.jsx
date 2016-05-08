@@ -22,6 +22,11 @@ const STYLES = StyleSheet.create({
     top: 0,
     right: 0,
     transformStyle: 'preserve-3d',
+    zIndex: 1,
+  },
+  content: {
+    position: 'relative',
+    zIndex: 0,
   },
 });
 
