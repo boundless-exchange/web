@@ -3,6 +3,7 @@
 export function compactHeader(fontSize, letterSpacing = 0) {
   return {
     fontFamily: 'Fela-Light',
+    fontWeight: 300,
     lineHeight: 0.8333,
     fontSize: fontSize * 1.21,
     letterSpacing: `${letterSpacing}em`,
