@@ -32,6 +32,7 @@ const STYLES = StyleSheet.create({
   },
   navigationContent: {
     transformStyle: 'preserve-3d',
+    WebkitFontSmoothing: 'antialiased',
   },
   navigation: {
     marginRight: sizes.SPACING.NORMAL,

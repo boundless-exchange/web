@@ -110,6 +110,7 @@ export default class Button extends BaseComponent {
 
   static defaultProps = {
     depth: 1,
+    inline: false,
   };
 
   static contextTypes = {

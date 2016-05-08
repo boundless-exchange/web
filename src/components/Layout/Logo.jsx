@@ -37,10 +37,12 @@ const STYLES = StyleSheet.create({
     ...fonts.compactHeader(ROW_HEIGHT, BOUNDLESS_SPACING),
     display: 'block',
     marginBottom: sizes.SPACING.SMALL,
+    WebkitFontSmoothing: 'antialiased',
   },
   exchange: {
     ...fonts.compactHeader(ROW_HEIGHT, EXCHANGE_SPACING),
     display: 'block',
+    WebkitFontSmoothing: 'antialiased',
   },
 });
 
