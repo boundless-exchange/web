@@ -25,6 +25,15 @@
           "value": "max-age=86400, public"
         }
       ]
+    },
+    {
+      "source": "serviceWorker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=86400, public"
+        }
+      ]
     }
   ]
 }
