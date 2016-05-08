@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 // THIS FILE IS NOT COMPILED BY BABEL.
+
+/*
 const CACHE_NAME = 'v1';
 
 self.addEventListener('install', _event => {
@@ -61,3 +63,4 @@ function updateHtmlCache() {
   // Fetch regardless to make sure the next fetch is fresh.
   fetchAndCache('/', {cache: 'no-cache'});
 }
+*/
