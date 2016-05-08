@@ -14,7 +14,7 @@ self.addEventListener('fetch', event => {
             .then(htmlResponse => {
               if (htmlResponse) {
                 // Fetch regardless to make sure the next fetch is fresh.
-                fetchAndCache('/');
+                fetchAndCache('/', {cache: 'no-cache'});
                 return htmlResponse;
               } else {
                 return fetchAndCache('/', {cache: 'force-cache'});
