@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-look';
 
-import { BaseComponent, Button, Raised } from '../components';
+import { BaseComponent, Raised } from '../components';
 import { sizes } from '../constants';
 
 const STYLES = StyleSheet.create({
@@ -19,12 +19,9 @@ export default class Section extends BaseComponent {
   render() {
     return (
       <div className={STYLES.root}>
-        <Raised depth={1}>
-          <Button highlight>{this.props.title}</Button>
-        </Raised>
+        <Raised depth={1}>{this.props.title}</Raised>
         {this.props.children &&
           <div className={STYLES.children}>{this.props.children}</div>
-
         }
       </div>
     );

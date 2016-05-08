@@ -12,6 +12,7 @@ export function createRoutes(store) {
         path='world-builder/:article(/:page)'
         components={{navigation: navigation.Articles, scene: scenes.Articles}}
         category='worldBuilder'
+        categoryKey='world-builder'
         onEnter={_loadArticle.bind(null, store, 'worldBuilder')}
       />
       <Route path='*' component={scenes.NotFound} />

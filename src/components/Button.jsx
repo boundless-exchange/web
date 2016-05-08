@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import look, { StyleSheet } from 'react-look';
+import { Link } from 'react-router';
 import { PropTypes } from 'react';
 
 import { animation, colors, fonts, sizes } from '../constants';
@@ -9,8 +10,11 @@ import Raised from './Raised';
 
 const STYLES = StyleSheet.create({
   root: {
+    display: 'block',
     position: 'relative',
     transformStyle: 'preserve-3d',
+    color: colors.FOREGROUND,
+    textDecoration: 'none',
   },
   shadow: {
     position: 'absolute',
@@ -63,12 +67,18 @@ export default class Button extends BaseComponent {
 
   render() {
     return (
-      <div className={STYLES.root} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
+      <Link
+        className={STYLES.root}
+        onMouseOver={this._onMouseOver}
+        onMouseOut={this._onMouseOut}
+        to={this.props.to}
+        title={this.props.title}
+      >
         <div className={STYLES.shadow} />
         <div className={STYLES.content}>
           <Raised depth={1}>{this.props.children}</Raised>
         </div>
-      </div>
+      </Link>
     );
   }
 

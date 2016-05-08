@@ -14,6 +14,7 @@ import Section from './Section';
   return {
     category,
     articleKey,
+    categoryKey: props.route.categoryKey,
     pageKey: props.params.page || interactions.articles.DEFAULT_PAGE,
     article: interactions.articles.get(state, category, articleKey),
     isLoading: interactions.articles.isLoading(state, category, articleKey),
@@ -24,6 +25,7 @@ export default class ArticlesNavigation extends BaseComponent {
   static propTypes = {
     route: PropTypes.shape({
       category: PropTypes.string.isRequired,
+      categoryKey: PropTypes.string.isRequired,
     }).isRequired,
     params: PropTypes.shape({
       article: PropTypes.string.isRequired,
@@ -41,12 +43,18 @@ export default class ArticlesNavigation extends BaseComponent {
     if (key === this.props.articleKey) {
       pages = <div>{_.map(this.props.article, this._renderPage)}</div>;
     }
-    return <Section key={key} title={article.title}>{pages}</Section>;
+
+    const path = `/${this.props.categoryKey}/${this.props.articleKey}`;
+    const title = <Button highlight to={path} title={article.title}>{article.title}</Button>;
+
+    return <Section key={key} title={title}>{pages}</Section>;
   }
 
   _renderPage = (page, key) => {
     if (key === interactions.articles.DEFAULT_PAGE) return null;
-    return <Button key={key}>{page.metadata.title}</Button>;
+    const title = page.metadata.title;
+    const path = `/${this.props.categoryKey}/${this.props.articleKey}/${key}`;
+    return <Button key={key} to={path} title={title}>{title}</Button>;
   }
 
 }
