@@ -57,6 +57,7 @@
     "redux-interactions": "^1.5.0",
     "redux-thunk": "^2.0.1",
     "request": "^2.70.0",
+    "send": "^0.13.2",
     "style-loader": "^0.13.1",
     "svg-inline-loader": "^0.4.1",
     "svg-inline-react": "^1.0.1",

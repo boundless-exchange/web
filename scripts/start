@@ -4,6 +4,7 @@ import connect from 'connect';
 import findFreePort from 'find-free-port';
 import opener from 'opener';
 import request from 'request';
+import send from 'send';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -28,6 +29,10 @@ function startServer(port) {
   }));
 
   app.use(webpackHotMiddleware(compiler));
+
+  app.use('/serviceWorker.js', (req, res) => {
+    send(req, '/serviceWorker.js', {root: config.srcDir}).pipe(res);
+  });
 
   app.use((_req, res) => {
     request(url).pipe(res);

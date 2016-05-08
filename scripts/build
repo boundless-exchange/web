@@ -8,6 +8,7 @@ config_watch=0
 
 rm -rf "${config_buildDir}"
 webpack --config ./config/webpack/es5
+cp src/serviceWorker.js "${config_buildDir}"/serviceWorker.js
 
 echo
 echo "Built project to ${config_buildDir}"
