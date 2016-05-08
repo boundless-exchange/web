@@ -43,7 +43,7 @@ export default class ArticlesNavigation extends BaseComponent {
     }
 
     const path = `/${this.props.categoryKey}/${key}`;
-    const title = <Button navigation highlight to={path} title={article.title}>{article.title}</Button>;
+    const title = <Button navigation highlight to={path} title={article.title} shadowDepth={1}>{article.title}</Button>;
 
     return <Section key={key} title={title}>{pages}</Section>;
   }

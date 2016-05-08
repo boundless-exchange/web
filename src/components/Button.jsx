@@ -43,6 +43,10 @@ const STYLES = StyleSheet.create({
       left: -sizes.SPACING.TINY,
       right: -sizes.SPACING.TINY,
     },
+    'shadowDepth=1': {
+      transform: `translateZ(${sizes.DEPTH * -0.85}px)`,
+      opacity: 0.15,
+    },
     'hover=true': {
       opacity: 0.3,
       zIndex: 2,
@@ -97,6 +101,7 @@ export default class Button extends BaseComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     depth: PropTypes.number.isRequired,
+    shadowDepth: PropTypes.number,
     highlight: PropTypes.bool,
     link: PropTypes.bool,
     inline: PropTypes.bool,
