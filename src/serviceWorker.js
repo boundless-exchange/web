@@ -7,14 +7,18 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(request)
       .then(response => {
-        if (response) return response;
+        if (response) {
+          if (isHtmlRequest(request)) {
+            updateHtmlCache();
+          }
+          return response;
+        }
 
         if (isHtmlRequest(request)) {
           return caches.match('/')
             .then(htmlResponse => {
               if (htmlResponse) {
-                // Fetch regardless to make sure the next fetch is fresh.
-                fetchAndCache('/', {cache: 'no-cache'});
+                updateHtmlCache();
                 return htmlResponse;
               } else {
                 return fetchAndCache('/', {cache: 'force-cache'});
@@ -39,4 +43,9 @@ function fetchAndCache(request, init) {
 
 function isHtmlRequest(request) {
   return new URL(request.url).pathname.indexOf('.') === -1;
+}
+
+function updateHtmlCache() {
+  // Fetch regardless to make sure the next fetch is fresh.
+  fetchAndCache('/', {cache: 'no-cache'});
 }
