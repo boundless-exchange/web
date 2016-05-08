@@ -14,13 +14,17 @@ const STYLES = StyleSheet.create({
   root: {
     display: 'block',
     position: 'relative',
+    transition: `color ${animation.DEFAULT}`,
     transformStyle: 'preserve-3d',
-    color: colors.FOREGROUND,
+    color: 'inherit',
     textDecoration: 'none',
+    'hover=true': {
+      color: colors.FOREGROUND,
+    },
   },
   shadow: {
     position: 'absolute',
-    transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
+    transform: `translateZ(${sizes.DEPTH * -0.999}px)`,
     transition: `opacity ${animation.DEFAULT}`,
     left: 0,
     top: 0,
@@ -31,35 +35,42 @@ const STYLES = StyleSheet.create({
     zIndex: 1,
     opacity: 0.15,
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 1.05}px)`,
+      transform: `translateZ(${sizes.DEPTH * 0.001}px)`,
       opacity: 0.3,
       zIndex: 2,
     },
   },
   content: {
-    ...fonts.compactHeader(fonts.SIZES.COPY),
     transition: `
       transform ${animation.DEFAULT},
       background ${animation.DEFAULT},
       border-right-color ${animation.DEFAULT}
     `,
-    transform: `translateZ(${sizes.DEPTH}px)`,
+    transform: `translateZ(${sizes.DEPTH * 0.001}px)`,
     transformStyle: 'preserve-3d',
     backgroundColor: colors.DIALOG.BACKGROUND,
-    borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACCENT).alpha(0).css()}`,
     padding: sizes.SPACING.SMALL,
     cursor: 'pointer',
     userSelect: 'none',
-    'active=true': {
-      borderRight: `${sizes.BORDER.THICK}px solid ${colors.ACCENT}`,
+    'navigation=true': {
+      borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACCENT).alpha(0).css()}`,
+      'active=true': {
+        borderRight: `${sizes.BORDER.THICK}px solid ${colors.ACCENT}`,
+      },
+    },
+    'link=true': {
+      backgroundColor: 'transparent',
     },
     'highlight=true': {
       backgroundColor: colors.DIALOG.BACKGROUND_HIGHLIGHT,
     },
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 1.95}px)`,
+      transform: `translateZ(${sizes.DEPTH * 0.999}px)`,
       backgroundColor: colors.ACCENT_HIGHLIGHT,
     },
+  },
+  contentInner: {
+    ...fonts.compactHeader(fonts.SIZES.COPY),
   },
 });
 
@@ -70,6 +81,9 @@ export default class Button extends BaseComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     depth: PropTypes.number.isRequired,
+    highlight: PropTypes.bool,
+    link: PropTypes.bool,
+    navigation: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -108,7 +122,9 @@ export default class Button extends BaseComponent {
       >
         <div className={STYLES.shadow} />
         <div className={STYLES.content}>
-          <Raised depth={1}>{this.props.children}</Raised>
+          <div className={STYLES.contentInner}>
+            <Raised depth={1}>{this.props.children}</Raised>
+          </div>
         </div>
       </Link>
     );
