@@ -19,8 +19,6 @@ export default {
     Plugins.statefulSelector,
     Plugins.mixin,
     Plugins.fallbackValue,
-    // Not consistent; see https://github.com/rofrischmann/react-look/issues/257
-    Plugins.friendlyClassName,
   ]),
 
   // Configuration for Plugins.mixin

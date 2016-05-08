@@ -3,9 +3,8 @@ import { PropTypes } from 'react';
 import { StyleSheet } from 'react-look';
 import { connect } from 'react-redux';
 
-import { BaseComponent, Button, Raised } from '../components';
+import { BaseComponent, Button, Heading, Raised } from '../components';
 import { sizes } from '../constants';
-import { Heading } from '../components/Articles';
 import * as interactions from '../interactions';
 
 import NotFound from './NotFound';
@@ -68,7 +67,7 @@ export default class ArticlesScene extends BaseComponent {
         </div>
         <div className={STYLES.content}>
           <Raised depth={1}>
-            <Heading level={0}>{page.metadata.title}</Heading>
+            <Heading level={1}>{page.metadata.title}</Heading>
             <page.default />
           </Raised>
         </div>

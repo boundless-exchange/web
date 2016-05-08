@@ -11,14 +11,16 @@ export function compactHeader(fontSize, letterSpacing = 0) {
   };
 }
 
-export const HEADER_BASE = {
-  fontFamily: 'Fela-Light',
-  lineHeight: 0.75,
-};
-
 export const SIZES = {
+  HEADING: {
+    1: 48,
+    2: 36,
+    3: 30,
+    4: 24,
+    5: 20,
+    6: 16,
+  },
   COPY: 16,
-  HEADER: 24,
 };
 
 // Semantic Styles
@@ -29,9 +31,23 @@ export const COPY = {
   fontSize: SIZES.COPY,
 };
 
-export const HEADER = {
-  MEDIUM: {
-    ...HEADER_BASE,
-    fontSize: SIZES.HEADER,
+export const HEADING = {
+  1: {
+    ...compactHeader(SIZES.HEADING[1]),
+  },
+  2: {
+    ...compactHeader(SIZES.HEADING[2]),
+  },
+  3: {
+    ...compactHeader(SIZES.HEADING[3]),
+  },
+  4: {
+    ...compactHeader(SIZES.HEADING[4]),
+  },
+  5: {
+    ...compactHeader(SIZES.HEADING[5]),
+  },
+  6: {
+    ...compactHeader(SIZES.HEADING[6]),
   },
 };
