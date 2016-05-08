@@ -73,7 +73,7 @@ const STYLES = StyleSheet.create({
     },
   },
   contentInner: {
-    ...fonts.compactHeader(fonts.SIZES.COPY),
+    ...fonts.HEADING[6],
   },
 });
 

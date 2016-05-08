@@ -10,7 +10,7 @@ const BOUNDLESS_SPACING = 0.475;
 const EXCHANGE_SPACING  = 0.5825;
 
 // Pre-calculated width/height ratio of the icon.
-const ICON_ASPECT_RATIO = 1.25;
+const ICON_ASPECT_RATIO = 1.28;
 
 const HEIGHT     = 48;
 const ROW_HEIGHT = (HEIGHT - sizes.SPACING.SMALL) / 2;
