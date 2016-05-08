@@ -85,6 +85,7 @@ export const plugins = _.compact([
       removeComments: true,
       collapseWhitespace: true,
     },
+    config,
   }),
   // https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
   config.optimize && new webpack.optimize.UglifyJsPlugin({
