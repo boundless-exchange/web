@@ -18,13 +18,16 @@ const STYLES = StyleSheet.create({
     transformStyle: 'preserve-3d',
     color: 'inherit',
     textDecoration: 'none',
+    'link=true': {
+      color: colors.ACTIVE,
+    },
     'hover=true': {
       color: colors.FOREGROUND,
     },
   },
   shadow: {
     position: 'absolute',
-    transform: `translateZ(${sizes.DEPTH * -0.999}px)`,
+    transform: `translateZ(${sizes.DEPTH * -0.95}px)`,
     transition: `opacity ${animation.DEFAULT}`,
     left: 0,
     top: 0,
@@ -35,7 +38,7 @@ const STYLES = StyleSheet.create({
     zIndex: 1,
     opacity: 0.15,
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 0.001}px)`,
+      transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
       opacity: 0.3,
       zIndex: 2,
     },
@@ -46,14 +49,14 @@ const STYLES = StyleSheet.create({
       background ${animation.DEFAULT},
       border-right-color ${animation.DEFAULT}
     `,
-    transform: `translateZ(${sizes.DEPTH * 0.001}px)`,
+    transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
     transformStyle: 'preserve-3d',
     backgroundColor: colors.DIALOG.BACKGROUND,
     padding: sizes.SPACING.SMALL,
     cursor: 'pointer',
     userSelect: 'none',
     'navigation=true': {
-      borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACCENT).alpha(0).css()}`,
+      borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACTIVE).alpha(0).css()}`,
       'active=true': {
         borderRight: `${sizes.BORDER.THICK}px solid ${colors.ACCENT}`,
       },
@@ -65,8 +68,8 @@ const STYLES = StyleSheet.create({
       backgroundColor: colors.DIALOG.BACKGROUND_HIGHLIGHT,
     },
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 0.999}px)`,
-      backgroundColor: colors.ACCENT_HIGHLIGHT,
+      transform: `translateZ(${sizes.DEPTH * 0.95}px)`,
+      backgroundColor: colors.ACTIVE,
     },
   },
   contentInner: {
