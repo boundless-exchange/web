@@ -2,8 +2,10 @@ import * as _ from 'lodash';
 import look, { StyleSheet } from 'react-look';
 import { PropTypes } from 'react';
 
-import BaseComponent from './BaseComponent';
 import { animation, colors, fonts, sizes } from '../constants';
+
+import BaseComponent from './BaseComponent';
+import Raised from './Raised';
 
 const STYLES = StyleSheet.create({
   root: {
@@ -23,7 +25,8 @@ const STYLES = StyleSheet.create({
     zIndex: 1,
     opacity: 0.15,
     'hover=true': {
-      opacity: 0.35,
+      transform: `translateZ(${sizes.DEPTH * 1.05}px)`,
+      opacity: 0.3,
       zIndex: 2,
     },
   },
@@ -62,7 +65,9 @@ export default class Button extends BaseComponent {
     return (
       <div className={STYLES.root} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
         <div className={STYLES.shadow} />
-        <div className={STYLES.content}>{this.props.children}</div>
+        <div className={STYLES.content}>
+          <Raised depth={1}>{this.props.children}</Raised>
+        </div>
       </div>
     );
   }

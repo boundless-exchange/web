@@ -4,7 +4,7 @@ import { PropTypes } from 'react';
 
 import * as articleCategories from '../articles';
 import * as interactions from '../interactions';
-import { BaseComponent } from '../components';
+import { BaseComponent, Button } from '../components';
 
 import Section from './Section';
 
@@ -39,9 +39,14 @@ export default class ArticlesNavigation extends BaseComponent {
   _renderArticle = (article, key) => {
     let pages;
     if (key === this.props.articleKey) {
-      pages = <div>We have a match!</div>;
+      pages = <div>{_.map(this.props.article, this._renderPage)}</div>;
     }
     return <Section key={key} title={article.title}>{pages}</Section>;
+  }
+
+  _renderPage = (page, key) => {
+    if (key === interactions.articles.DEFAULT_PAGE) return null;
+    return <Button key={key}>{page.metadata.title}</Button>;
   }
 
 }

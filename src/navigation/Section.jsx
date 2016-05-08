@@ -23,9 +23,8 @@ export default class Section extends BaseComponent {
           <Button highlight>{this.props.title}</Button>
         </Raised>
         {this.props.children &&
-          <div className={STYLES.children}>
-            <Button>{this.props.children}</Button>
-          </div>
+          <div className={STYLES.children}>{this.props.children}</div>
+
         }
       </div>
     );

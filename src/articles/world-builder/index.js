@@ -3,7 +3,7 @@ export const guide = {
   load() {
     return new Promise((resolve, _reject) => {
       require.ensure([], require => {
-        resolve(require('./guide'));
+        resolve(require('./guide').default);
       }, 'world-builder/guide');
     });
   },
