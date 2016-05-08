@@ -11,7 +11,7 @@
     <% } %>
     <style id="component-styles"></style>
   </head>
-  <body>
+  <body style="background:#353748">
     <div id="root"></div>
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
