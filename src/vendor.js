@@ -3,6 +3,7 @@ import 'bowser';
 import 'chroma-js';
 import 'classlist-polyfill';
 import 'combined-reduction';
+import 'deep-update';
 import 'lodash';
 import 'react-addons-shallow-compare';
 import 'react-dom';
