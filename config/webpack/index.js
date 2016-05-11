@@ -34,11 +34,11 @@ export const module = {
       test: /\.jsx?$/,
     },
     {
-      loader: 'url?limit=8192',
+      loader: 'image-size?name=assets/[name]-[sha512:hash:base58:20].[ext]',
       test: /\.(png|jpg)$/,
     },
     {
-      loader: 'file?name=[name]-[sha512:hash:base58:20].[ext]',
+      loader: 'file?name=assets/[name]-[sha512:hash:base58:20].[ext]',
       test: /\.(eot|ttf|woff2?)$/,
     },
     {

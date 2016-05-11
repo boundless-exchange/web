@@ -7,3 +7,6 @@
 
 # OS X
 .DS_Store
+
+# World Builder
+*.backup.json
