@@ -34,15 +34,21 @@ export const module = {
       test: /\.jsx?$/,
     },
     {
-      loader: 'image-size?name=assets/[name]-[sha512:hash:base58:20].[ext]',
-      test: /\.(png|jpg)$/,
+      loaders: [
+        'image-size?name=assets/[name]-[sha512:hash:base58:20].[ext]',
+        'image-webpack',
+      ],
+      test: /\.(gif|jpeg|jpg|png)$/,
     },
     {
       loader: 'file?name=assets/[name]-[sha512:hash:base58:20].[ext]',
       test: /\.(eot|ttf|woff2?)$/,
     },
     {
-      loader: 'babel!reactdown/webpack',
+      loaders: [
+        'babel',
+        'reactdown/webpack',
+      ],
       test: /\.md$/,
     },
     {
