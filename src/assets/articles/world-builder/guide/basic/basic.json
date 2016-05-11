@@ -1,0 +1,120 @@
+{
+   "@collapsed" : false,
+   "@offset" : [ -638.9466552734375, 780.4159545898438 ],
+   "@position" : [ -341.3359375, 234.203125 ],
+   "@scale" : 0.8827002048492432,
+   "@unlinked" : [],
+   "generator" : {
+      "@biomeSelectionToggle" : true,
+      "@collapsed" : false,
+      "@globalGenerationToggle" : true,
+      "@name" : "generator",
+      "@position" : [ -20.12546157836914, 180.8414916992188 ],
+      "@version" : 5,
+      "biomeDistortion" : null,
+      "biomeDistortionScale" : 16,
+      "biomeSize" : 24,
+      "biomes" : [
+         {
+            "@attributesToggle" : true,
+            "@collapsed" : false,
+            "@distributionToggle" : true,
+            "@globalsToggle" : true,
+            "@position" : [ 305.8604431152344, -308.34716796875 ],
+            "@threedToggle" : true,
+            "caveNoise" : null,
+            "caveSurfaceShrink" : 0.2300000041723251,
+            "caveThresholdBias" : 0,
+            "decoration" : null,
+            "distortion" : 0,
+            "distortionNoise" : null,
+            "distribution" : {
+               "bias" : 2,
+               "exponent" : 2,
+               "maxAltitude" : 1,
+               "maxHumidity" : 1,
+               "maxTemperature" : 1,
+               "maxVegetation" : 1,
+               "minAltitude" : 0,
+               "minHumidity" : 0,
+               "minTemperature" : 0,
+               "minVegetation" : 0,
+               "weight" : 1
+            },
+            "dropMaxDepth" : 8,
+            "dropMaxGradient" : 1,
+            "dropMaxNoGravel" : 5,
+            "dropNoise" : null,
+            "heightmap" : {
+               "@collapsed" : false,
+               "@name" : "basic heightmap",
+               "@position" : [ 614.3950805664062, -973.6033325195312 ],
+               "max" : 85,
+               "min" : 60,
+               "noise" : {
+                  "@collapsed" : false,
+                  "@name" : "perlin noise (2D)",
+                  "@position" : [ 921.7455444335938, -992.5447387695312 ],
+                  "frequency" : [ 0.2000000029802322, 0.2000000029802322 ],
+                  "offset" : [ 126.2939453125, -398.6083984375 ],
+                  "type" : "perlin"
+               },
+               "type" : "basic"
+            },
+            "lakes" : null,
+            "name" : "Forest",
+            "ores" : null,
+            "plantations" : null,
+            "shrinkNoise" : null,
+            "strata" : null,
+            "substrate" : null,
+            "threeD" : null,
+            "threeDMaxSurfaceY" : 256,
+            "threeDMaxY" : 256,
+            "threeDMinSurfaceY" : 0,
+            "threeDMinY" : 0,
+            "threeDThresholdBias" : 0
+         }
+      ],
+      "caves" : null,
+      "distortion" : null,
+      "distribution" : {
+         "altitude" : null,
+         "humidity" : null,
+         "temperature" : null,
+         "vegetation" : null
+      },
+      "drop" : null,
+      "lowerSea" : {
+         "level" : 16,
+         "liquidType" : "WATER"
+      },
+      "sea" : {
+         "level" : 64,
+         "liquidType" : "WATER"
+      },
+      "shrink" : null
+   },
+   "name" : "Tutorial World",
+   "seed" : "totally random",
+   "sharedConfig" : {
+      "blockColors" : {
+         "CLAY_EARTH_BASE" : 1,
+         "CRYSTAL_GLEAM_BASE" : 1,
+         "DIRT_EARTH_BASE" : 1,
+         "GRASS_EARTH_BASE" : 1,
+         "PROP_DOOR_BASE" : 1,
+         "PROP_FUNCTIONAL_BOUNCEPAD" : 1,
+         "SAND_EARTH_BASE" : 1,
+         "STONE_EARTH_BASE" : 1,
+         "TITAN_ENERGY_CORE" : 1,
+         "TITAN_PLATFORM_BASE" : 1,
+         "TITAN_SURFACE_BASE" : 1,
+         "WOOD_ANCIENT_LEAVES" : 1,
+         "WOOD_ANCIENT_TRUNK" : 1,
+         "WOOD_TWISTED_LEAVES" : 1,
+         "WOOD_TWISTED_TRUNK" : 1
+      }
+   },
+   "worldSize" : 256
+}
