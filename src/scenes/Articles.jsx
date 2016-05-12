@@ -9,7 +9,7 @@ import * as interactions from '../interactions';
 
 import NotFound from './NotFound';
 
-const GITHUB_SRC = `https://github.com/boundless-exchange/web/edit/master/src`;
+const GITHUB_SRC = `https://github.com/boundless-exchange/web/blob/master/src`;
 
 const STYLES = StyleSheet.create({
   root: {
