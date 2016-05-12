@@ -14,12 +14,10 @@ const GITHUB_SRC = `https://github.com/boundless-exchange/web/edit/master/src`;
 const STYLES = StyleSheet.create({
   root: {
     position: 'relative',
-    transformStyle: 'preserve-3d',
   },
   controls: {
     display: 'flex',
     alignItems: 'flex-start',
-    transformStyle: 'preserve-3d',
   },
   controlSpacer: {
     flex: 1,
@@ -65,7 +63,7 @@ export default class ArticlesScene extends BaseComponent {
     if (!page) return <NotFound />;
 
     return (
-      <section className={STYLES.root}>
+      <div className={STYLES.root}>
         <div className={STYLES.controls}>
           <Raised depth={1} className={STYLES.title}>
             <Heading level={1}>{page.metadata.title}</Heading>
@@ -82,7 +80,7 @@ export default class ArticlesScene extends BaseComponent {
         <Raised depth={1} className={STYLES.content}>
           <page.default />
         </Raised>
-      </section>
+      </div>
     );
   }
 

@@ -27,16 +27,13 @@ const STYLES = StyleSheet.create({
     display: 'flex',
     width: '100%',
     minHeight: '100%',
-    transformStyle: 'preserve-3d',
     perspective: 2000,
   },
   navigationContent: {
-    transformStyle: 'preserve-3d',
     WebkitFontSmoothing: 'antialiased',
   },
   navigation: {
     marginRight: sizes.SPACING.NORMAL,
-    transformStyle: 'preserve-3d',
   },
   logo: {
     // Really, it should be normal padding bottom; zero left, but we're cheating
@@ -45,7 +42,6 @@ const STYLES = StyleSheet.create({
     paddingLeft: sizes.SPACING.SMALL,
   },
   content: {
-    transformStyle: 'preserve-3d',
     flex: 1,
     backgroundColor: colors.DIALOG.FOREGROUND,
     color: colors.BACKGROUND,
@@ -54,6 +50,9 @@ const STYLES = StyleSheet.create({
 });
 
 StyleSheet.addCSS({
+  '#root div': {
+    transformStyle: 'preserve-3d',
+  },
   '::selection': {
     backgroundColor: colors.ACTIVE_HIGHLIGHT,
     color: colors.FOREGROUND,

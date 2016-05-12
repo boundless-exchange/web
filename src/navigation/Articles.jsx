@@ -1,19 +1,12 @@
 import * as _ from 'lodash';
 import { connect } from 'react-redux';
 import { PropTypes } from 'react';
-import { StyleSheet } from 'react-look';
 
 import * as interactions from '../interactions';
 import articleCategories from '../articles';
 import { BaseComponent, Button } from '../components';
 
 import Section from './Section';
-
-const STYLES = StyleSheet.create({
-  root: {
-    transformStyle: 'preserve-3d',
-  },
-});
 
 @connect((state, props) => {
   const categoryKey = props.route.categoryKey;
@@ -40,7 +33,7 @@ export default class ArticlesNavigation extends BaseComponent {
 
   render() {
     const articles = articleCategories[this.props.categoryKey]; // eslint-disable-line import/namespace
-    return <div className={STYLES.root}>{_.map(articles, this._renderArticle)}</div>;
+    return <div>{_.map(articles, this._renderArticle)}</div>;
   }
 
   _renderArticle = (article, key) => {

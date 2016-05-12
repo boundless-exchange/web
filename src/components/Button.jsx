@@ -59,7 +59,6 @@ const STYLES = StyleSheet.create({
       border-right-color ${animation.DEFAULT}
     `,
     transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
-    transformStyle: 'preserve-3d',
     backgroundColor: colors.DIALOG.BACKGROUND,
     padding: sizes.SPACING.SMALL,
     cursor: 'pointer',
