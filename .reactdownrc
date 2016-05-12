@@ -1,4 +1,12 @@
 {
   // See ./config/webpack
   components: 'boundless-exchange-article-components',
+  directives: {
+    center: {
+      render: {
+        source: 'boundless-exchange-article-components/Center',
+        name: 'default',
+      },
+    },
+  },
 }
