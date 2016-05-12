@@ -14,21 +14,16 @@ const STYLES = StyleSheet.create({
     ...fonts.COPY,
     backgroundColor: colors.BACKGROUND,
     color: colors.FOREGROUND,
-    padding: sizes.SPACING.NORMAL,
-    height: '100%',
-  },
-  body: {
-    height: '100%',
   },
   reactRoot: {
-    height: '100%',
     maxWidth: 1000,
     margin: '0 auto',
+    padding: sizes.SPACING.NORMAL,
   },
   root: {
     display: 'flex',
     width: '100%',
-    minHeight: '100%',
+    minHeight: `calc(100vh - ${sizes.SPACING.NORMAL * 2}px)`,
     perspective: 2000,
   },
   navigationContent: {
@@ -73,7 +68,6 @@ export default class Layout extends BaseComponent {
   componentWillMount() {
     // As the top level component, we own the page-wide styles, too.
     document.documentElement.classList.add(STYLES.html);
-    document.body.classList.add(STYLES.body);
     document.getElementById('root').classList.add(STYLES.reactRoot);
   }
 
@@ -97,7 +91,6 @@ export default class Layout extends BaseComponent {
 
     // Clean up our mess when hot reloading
     document.documentElement.classList.remove(STYLES.html);
-    document.body.classList.remove(STYLES.body);
     document.getElementById('root').classList.remove(STYLES.reactRoot);
   }
 
