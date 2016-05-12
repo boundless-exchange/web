@@ -6,11 +6,13 @@ import { sizes } from '../constants';
 const STYLES = StyleSheet.create({
   root: {
     marginBottom: sizes.SPACING.NORMAL,
+    transformStyle: 'preserve-3d',
   },
   children: {
     marginTop: -sizes.SPACING.TINY / 2,
     paddingLeft: sizes.SPACING.TINY,
     paddingRight: sizes.SPACING.TINY,
+    transformStyle: 'preserve-3d',
   },
 });
 
