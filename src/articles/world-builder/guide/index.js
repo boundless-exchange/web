@@ -6,4 +6,5 @@ export default {
   'biomes': require('./biomes.md'),
   'sub-biomes': require('./sub-biomes.md'),
   'subterrain-detail': require('./subterrain-detail.md'),
+  'world-polish': require('./world-polish.md'),
 };
