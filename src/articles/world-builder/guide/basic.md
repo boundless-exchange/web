@@ -208,4 +208,4 @@ Great success!
 
 # Up Next
 
-That's it for this tutorial.  [In the next tutorial](/world-builder/guide/decorations), we will cover turning your biome into an actual forest!  There will be trees, grass, dir, sand, flowers, and all sorts of other goodies.
+That's it for this tutorial.  [In the next tutorial](/world-builder/guide/surface-detail), we will cover turning your biome into an actual forest!  There will be trees, grass, dir, sand, flowers, and all sorts of other goodies.
