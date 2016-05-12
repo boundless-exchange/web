@@ -7,8 +7,8 @@ import { sizes } from '../../constants';
 
 const STYLES = StyleSheet.create({
   root: {
-    marginTop: sizes.SPACING.NORMAL * 2,
-    marginBottom: sizes.SPACING.NORMAL,
+    paddingTop: sizes.SPACING.NORMAL * 1.5,
+    paddingBottom: sizes.SPACING.SMALL,
   },
 });
 
