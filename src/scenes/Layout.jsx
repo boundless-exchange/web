@@ -7,7 +7,7 @@ import { colors, fonts, sizes } from '../constants';
 
 // Maximum # of degrees the page will rotate in a particular direction.
 const ROTATION_MAX = 4.5;
-const DEBUG_ROTATION_MAX = 90;
+const DEBUG_ROTATION_MAX = 85;
 
 const STYLES = StyleSheet.create({
   html: {
