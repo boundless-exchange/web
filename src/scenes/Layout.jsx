@@ -39,7 +39,10 @@ const STYLES = StyleSheet.create({
     transformStyle: 'preserve-3d',
   },
   logo: {
-    marginBottom: sizes.SPACING.NORMAL,
+    // Really, it should be normal padding bottom; zero left, but we're cheating
+    // the default perspective here.
+    marginBottom: sizes.SPACING.SMALL,
+    paddingLeft: sizes.SPACING.SMALL,
   },
   content: {
     transformStyle: 'preserve-3d',
@@ -101,20 +104,16 @@ export default class Layout extends BaseComponent {
     return (
       <div className={STYLES.root} ref={r => this._root = r}>
         <div className={STYLES.navigation}>
-          <div className={STYLES.logo}>
-            <Raised depth={1} className={STYLES.logo}>
-              <Logo />
-            </Raised>
-          </div>
+          <Raised depth={3} className={STYLES.logo}>
+            <Logo />
+          </Raised>
           <div className={STYLES.navigationContent}>
-            <Raised depth={-2}>
-              {this.props.navigation}
-            </Raised>
+            {this.props.navigation}
           </div>
         </div>
-        <div className={STYLES.content}>
+        <Raised depth={2} className={STYLES.content}>
           {this.props.scene}
-        </div>
+        </Raised>
       </div>
     );
   }
@@ -161,7 +160,7 @@ export default class Layout extends BaseComponent {
     const html = document.documentElement;
     const x = html.clientWidth / 2 + window.scrollX;
     const y = html.clientHeight / 2 + window.scrollY;
-    this._root.style.transformOrigin = `${x}px ${y}px`;
+    this._root.style.transformOrigin = `${x}px ${y}px ${sizes.DEPTH * 2}px`;
   }
 
 }

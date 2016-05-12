@@ -36,7 +36,7 @@ export default class Layer extends BaseComponent {
 
   render() {
     return (
-      <div className={STYLES.root}>
+      <div className={`${STYLES.root} ${this.props.className}`}>
         {this.props.children}
       </div>
     );
