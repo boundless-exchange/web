@@ -9,6 +9,9 @@ const STYLES = StyleSheet.create({
   root: {
     paddingTop: sizes.SPACING.NORMAL * 1.5,
     paddingBottom: sizes.SPACING.SMALL,
+    'level>3': {
+      paddingTop: sizes.SPACING.SMALL,
+    },
   },
 });
 
