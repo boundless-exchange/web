@@ -32,6 +32,7 @@ export default class Layer extends BaseComponent {
 
   static defaultProps = {
     depth: 1,
+    className: '',
   };
 
   render() {
