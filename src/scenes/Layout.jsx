@@ -22,6 +22,8 @@ const STYLES = StyleSheet.create({
   },
   reactRoot: {
     height: '100%',
+    maxWidth: 1000,
+    margin: '0 auto',
   },
   root: {
     display: 'flex',
