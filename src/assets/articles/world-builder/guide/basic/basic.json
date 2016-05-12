@@ -1,8 +1,8 @@
 {
    "@collapsed" : false,
-   "@offset" : [ -638.9466552734375, 780.4159545898438 ],
+   "@offset" : [ -948.4420776367188, 1057.514282226562 ],
    "@position" : [ -341.3359375, 234.203125 ],
-   "@scale" : 0.8827002048492432,
+   "@scale" : 2,
    "@unlinked" : [],
    "generator" : {
       "@biomeSelectionToggle" : true,
@@ -53,11 +53,36 @@
                "min" : 60,
                "noise" : {
                   "@collapsed" : false,
-                  "@name" : "perlin noise (2D)",
-                  "@position" : [ 921.7455444335938, -992.5447387695312 ],
-                  "frequency" : [ 0.2000000029802322, 0.2000000029802322 ],
-                  "offset" : [ 126.2939453125, -398.6083984375 ],
-                  "type" : "perlin"
+                  "@name" : "fractal noise (2D)",
+                  "@position" : [ 933.2362670898438, -977.0782470703125 ],
+                  "frequency" : [ 1, 1 ],
+                  "fun" : {
+                     "@collapsed" : false,
+                     "@name" : "perlin noise (2D)",
+                     "@position" : [ 1292.213134765625, -992.5447387695312 ],
+                     "frequency" : [ 0.2000000029802322, 0.2000000029802322 ],
+                     "offset" : [ 126.2939453125, -398.6083984375 ],
+                     "type" : "perlin"
+                  },
+                  "octaves" : [
+                     {
+                        "multiplier" : 0.7,
+                        "offset" : [ 10.3271484375, -31.6162109375 ],
+                        "scale" : 1
+                     },
+                     {
+                        "multiplier" : 0.2,
+                        "offset" : [ -119.7021484375, -323.974609375 ],
+                        "scale" : 2
+                     },
+                     {
+                        "multiplier" : 0.1,
+                        "offset" : [ -53.076171875, 167.3828125 ],
+                        "scale" : 4
+                     }
+                  ],
+                  "offset" : [ 0, 0 ],
+                  "type" : "fractal"
                },
                "type" : "basic"
             },
