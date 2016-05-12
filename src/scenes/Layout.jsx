@@ -160,6 +160,7 @@ export default class Layout extends BaseComponent {
     const x = html.clientWidth / 2 + window.scrollX;
     const y = html.clientHeight / 2 + window.scrollY;
     this._root.style.transformOrigin = `${x}px ${y}px ${sizes.DEPTH * 2}px`;
+    this._root.style.perspectiveOrigin = `${x}px ${y}px`;
   }
 
 }
