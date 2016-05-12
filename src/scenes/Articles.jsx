@@ -14,19 +14,24 @@ const GITHUB_SRC = `https://github.com/boundless-exchange/web/edit/master/src`;
 const STYLES = StyleSheet.create({
   root: {
     position: 'relative',
-    padding: sizes.SPACING.NORMAL,
     transformStyle: 'preserve-3d',
   },
   controls: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
+    display: 'flex',
+    alignItems: 'flex-start',
     transformStyle: 'preserve-3d',
-    zIndex: 1,
+  },
+  controlSpacer: {
+    flex: 1,
+  },
+  title: {
+    whiteSpace: 'nowrap',
+    padding: sizes.SPACING.NORMAL,
+    paddingBottom: 0,
   },
   content: {
     position: 'relative',
-    zIndex: 0,
+    padding: sizes.SPACING.NORMAL,
   },
 });
 
@@ -62,6 +67,10 @@ export default class ArticlesScene extends BaseComponent {
     return (
       <section className={STYLES.root}>
         <div className={STYLES.controls}>
+          <Raised depth={1} className={STYLES.title}>
+            <Heading level={1}>{page.metadata.title}</Heading>
+          </Raised>
+          <div className={STYLES.controlSpacer} />
           <Button
             link
             to={`${GITHUB_SRC}/articles/${categoryKey}/${articleKey}/${pageKey}.md`}
@@ -70,12 +79,9 @@ export default class ArticlesScene extends BaseComponent {
             Edit
           </Button>
         </div>
-        <div className={STYLES.content}>
-          <Raised depth={1}>
-            <Heading level={1}>{page.metadata.title}</Heading>
-            <page.default />
-          </Raised>
-        </div>
+        <Raised depth={1} className={STYLES.content}>
+          <page.default />
+        </Raised>
       </section>
     );
   }
