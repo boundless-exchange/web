@@ -8,9 +8,9 @@ const STYLES = StyleSheet.create({
     marginBottom: sizes.SPACING.NORMAL,
   },
   children: {
-    marginTop: -sizes.SPACING.TINY / 2,
-    paddingLeft: sizes.SPACING.TINY,
-    paddingRight: sizes.SPACING.TINY,
+    // marginTop: -sizes.SPACING.TINY / 2,
+    padding: sizes.SPACING.TINY,
+    paddingTop: 0,
   },
 });
 

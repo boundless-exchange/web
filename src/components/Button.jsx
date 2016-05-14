@@ -9,6 +9,14 @@ import { animation, colors, fonts, sizes } from '../constants';
 
 import BaseComponent from './BaseComponent';
 
+const SIDE_SHADOW = 0.4;
+const SHADOWED = {
+  ACCENT: chroma(colors.ACCENT).darken(SIDE_SHADOW).css(),
+  ACTIVE: chroma(colors.ACTIVE).darken(SIDE_SHADOW).css(),
+  DIALOG_BACKGROUND: chroma(colors.DIALOG.BACKGROUND).darken(SIDE_SHADOW).css(),
+  DIALOG_BACKGROUND_HIGHLIGHT: chroma(colors.DIALOG.BACKGROUND_HIGHLIGHT).darken(SIDE_SHADOW).css(),
+};
+
 const STYLES = StyleSheet.create({
   root: {
     display: 'block',
@@ -39,6 +47,7 @@ const STYLES = StyleSheet.create({
     boxShadow: `0 0 4px 1px ${colors.DIALOG.SHADOW}`,
     zIndex: 1,
     opacity: 0.0,
+    pointerEvents: 'none',
     'inline=true': {
       left: -sizes.SPACING.TINY,
       right: -sizes.SPACING.TINY,
@@ -63,13 +72,11 @@ const STYLES = StyleSheet.create({
     padding: sizes.SPACING.SMALL,
     cursor: 'pointer',
     userSelect: 'none',
-    borderRadius: sizes.BORDER_RADIUS,
     'inline=true': {
       padding: `0 ${sizes.SPACING.TINY}px`,
       margin: `0 ${-sizes.SPACING.TINY}px`,
     },
     'navigation=true': {
-      borderRadius: 0,
       borderRight: `${sizes.BORDER.THICK}px solid ${chroma(colors.ACTIVE).alpha(0).css()}`,
       'active=true': {
         borderRight: `${sizes.BORDER.THICK}px solid ${colors.ACCENT}`,
@@ -82,13 +89,88 @@ const STYLES = StyleSheet.create({
       backgroundColor: colors.DIALOG.BACKGROUND_HIGHLIGHT,
     },
     'hover=true': {
-      transform: `translateZ(${sizes.DEPTH * 0.95}px)`,
+      transform: `translateZ(${sizes.DEPTH * 1.95}px)`,
       backgroundColor: colors.ACTIVE,
     },
   },
   contentInner: {
     'inline=false': {
       ...fonts.HEADING[6],
+    },
+  },
+  side: {
+    opacity: 0.0,
+    backgroundColor: SHADOWED.ACTIVE,
+    'navigation=true': {
+      opacity: 1.0,
+      backgroundColor: SHADOWED.DIALOG_BACKGROUND,
+      'highlight=true': {
+        backgroundColor: SHADOWED.DIALOG_BACKGROUND_HIGHLIGHT,
+      },
+    },
+    'hover=true': {
+      opacity: 1.0,
+      backgroundColor: SHADOWED.ACTIVE,
+    },
+  },
+  bottomSide: {
+    transition: `background ${animation.DEFAULT}, opacity ${animation.DEFAULT}, border ${animation.DEFAULT}`,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: sizes.DEPTH,
+    transformOrigin: 'bottom center',
+    transform: 'rotateX(90deg)',
+    'navigation=true': {
+      right: -sizes.BORDER.THICK,
+      borderRight: `${sizes.BORDER.THICK}px solid ${chroma(SHADOWED.ACCENT).alpha(0).css()}`,
+      'active=true': {
+        borderRight: `${sizes.BORDER.THICK}px solid ${SHADOWED.ACCENT}`,
+      },
+    },
+  },
+  topSide: {
+    transition: `background ${animation.DEFAULT}, opacity ${animation.DEFAULT}, border ${animation.DEFAULT}`,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: sizes.DEPTH,
+    transformOrigin: 'top center',
+    transform: 'rotateX(-90deg)',
+    'navigation=true': {
+      right: -sizes.BORDER.THICK,
+      borderRight: `${sizes.BORDER.THICK}px solid ${chroma(SHADOWED.ACCENT).alpha(0).css()}`,
+      'active=true': {
+        borderRight: `${sizes.BORDER.THICK}px solid ${SHADOWED.ACCENT}`,
+      },
+    },
+  },
+  leftSide: {
+    transition: `background ${animation.DEFAULT}, opacity ${animation.DEFAULT}`,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: sizes.DEPTH,
+    transformOrigin: 'center left',
+    transform: 'rotateY(90deg)',
+  },
+  rightSide: {
+    transition: `background ${animation.DEFAULT}, opacity ${animation.DEFAULT}`,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    width: sizes.DEPTH,
+    transformOrigin: 'center right',
+    transform: 'rotateY(-90deg)',
+    'navigation=true': {
+      right: -sizes.BORDER.THICK,
+    },
+    'active=true': {
+      backgroundColor: `${SHADOWED.ACCENT} !important`,
     },
   },
 });
@@ -152,6 +234,10 @@ export default class Button extends BaseComponent {
     return [
       <div key='shadow' className={STYLES.shadow} />,
       <div key='content' className={STYLES.content}>
+        <div className={`${STYLES.side} ${STYLES.topSide}`} />
+        <div className={`${STYLES.side} ${STYLES.rightSide}`} />
+        <div className={`${STYLES.side} ${STYLES.bottomSide}`} />
+        <div className={`${STYLES.side} ${STYLES.leftSide}`} />
         <div className={STYLES.contentInner}>{this.props.children}</div>
       </div>,
     ];
