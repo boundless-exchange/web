@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+
+# Until https://github.com/rofrischmann/react-look/pull/285
+sed -i -e 's/innerText/textContent/g' ./node_modules/react-look/lib/api/LookRoot.js
