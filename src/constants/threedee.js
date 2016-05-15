@@ -21,6 +21,9 @@ if (bowser.webkit && !bowser.blink) {
 // Gecko (Firefox)
 
 if (bowser.gecko) {
+  // Rotation completely screws up gecko's calculation of the document size.
+  // You end up getting horizontal scroll bars all over the place.
+  ROTATION = false;
   // Updating perspective-origin on Gecko is extremely expensive.
   EXPENSIVE_PERSPECTIVE = true;
 }

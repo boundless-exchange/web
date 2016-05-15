@@ -27,11 +27,11 @@ const STYLES = StyleSheet.create({
     minHeight: `calc(100vh - ${sizes.SPACING.NORMAL * 2}px)`,
     perspective: 2000,
   },
-  navigationContent: {
-    WebkitFontSmoothing: 'antialiased',
-  },
   navigation: {
     marginRight: sizes.SPACING.NORMAL,
+  },
+  navigationContent: {
+    WebkitFontSmoothing: 'antialiased',
   },
   logo: {
     // Really, it should be normal padding bottom; zero left, but we're cheating
@@ -153,7 +153,7 @@ export default class Layout extends BaseComponent {
     return `${((1 - value) * this._rotationMax * 2) - this._rotationMax}deg`;
   }
 
-  @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 500 : 0)
+  @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 250 : 0)
   _updatePerspective() {
     const html = document.documentElement;
     const x = html.clientWidth / 2 + window.scrollX;
