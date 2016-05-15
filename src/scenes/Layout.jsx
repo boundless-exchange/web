@@ -1,14 +1,13 @@
-import * as bowser from 'bowser';
 import { PropTypes } from 'react';
 import { StyleSheet } from 'react-look';
 
 import { BaseComponent, Raised } from '../components';
 import { Logo } from '../components/Layout';
-import { colors, fonts, sizes } from '../constants';
+import { colors, fonts, sizes, threedee } from '../constants';
 import { rendering } from '../util';
 
 // Maximum # of degrees the page will rotate in a particular direction.
-const ROTATION_MAX = 4.5;
+const ROTATION_MAX = 3;
 const DEBUG_ROTATION_MAX = 85;
 
 const STYLES = StyleSheet.create({
@@ -144,6 +143,7 @@ export default class Layout extends BaseComponent {
 
   @rendering.throttle()
   _updateRotation(x = this._rotationX, y = this._rotationY) {
+    if (!threedee.ROTATION) return;
     this._rotationX = x;
     this._rotationY = y;
     this._root.style.transform = `rotateY(${this._rotate(1 - x)}) rotateX(${this._rotate(y)})`;
@@ -153,14 +153,15 @@ export default class Layout extends BaseComponent {
     return `${((1 - value) * this._rotationMax * 2) - this._rotationMax}deg`;
   }
 
-  // Updating perspective-origin on Gecko is extremely expensive.
-  @rendering.throttle(bowser.gecko ? 250 : 0)
+  @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 250 : 0)
   _updatePerspective() {
     const html = document.documentElement;
     const x = html.clientWidth / 2 + window.scrollX;
     const y = html.clientHeight / 2 + window.scrollY;
-    this._root.style.transformOrigin = `${x}px ${y}px ${sizes.DEPTH * 2}px`;
     this._root.style.perspectiveOrigin = `${x}px ${y}px`;
+    if (threedee.ROTATION) {
+      this._root.style.transformOrigin = `${x}px ${y}px ${sizes.DEPTH * 2}px`;
+    }
   }
 
 }
