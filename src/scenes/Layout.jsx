@@ -1,9 +1,11 @@
+import * as bowser from 'bowser';
 import { PropTypes } from 'react';
 import { StyleSheet } from 'react-look';
 
 import { BaseComponent, Raised } from '../components';
 import { Logo } from '../components/Layout';
 import { colors, fonts, sizes } from '../constants';
+import { rendering } from '../util';
 
 // Maximum # of degrees the page will rotate in a particular direction.
 const ROTATION_MAX = 4.5;
@@ -140,6 +142,7 @@ export default class Layout extends BaseComponent {
     this._updateRotation();
   }
 
+  @rendering.throttle()
   _updateRotation(x = this._rotationX, y = this._rotationY) {
     this._rotationX = x;
     this._rotationY = y;
@@ -150,6 +153,8 @@ export default class Layout extends BaseComponent {
     return `${((1 - value) * this._rotationMax * 2) - this._rotationMax}deg`;
   }
 
+  // Updating perspective-origin on Gecko is extremely expensive.
+  @rendering.throttle(bowser.gecko ? 250 : 0)
   _updatePerspective() {
     const html = document.documentElement;
     const x = html.clientWidth / 2 + window.scrollX;
