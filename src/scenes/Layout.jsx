@@ -6,6 +6,8 @@ import { Logo } from '../components/Layout';
 import { colors, fonts, sizes, threedee } from '../constants';
 import { rendering } from '../util';
 
+console.log('threedee config:', threedee, 'bowser:', require('bowser')); // eslint-disable-line
+
 // Maximum # of degrees the page will rotate in a particular direction.
 const ROTATION_MAX = 3;
 const DEBUG_ROTATION_MAX = 85;
