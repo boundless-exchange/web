@@ -12,7 +12,7 @@ export let EXPENSIVE_PERSPECTIVE = false;
 
 // WebKit (Safari)
 
-if (bowser.webkit && !bowser.blink) {
+if (bowser.webkit && !bowser.blink && !bowser.chrome) {
   // WebKit doesn't calculate transform-origin and perspective-origin correctly
   // when both are specified.  We prefer perspective.}
   ROTATION = false;
