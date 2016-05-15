@@ -153,7 +153,7 @@ export default class Layout extends BaseComponent {
     return `${((1 - value) * this._rotationMax * 2) - this._rotationMax}deg`;
   }
 
-  @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 250 : 0)
+  @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 500 : 0)
   _updatePerspective() {
     const html = document.documentElement;
     const x = html.clientWidth / 2 + window.scrollX;
