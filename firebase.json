@@ -1,39 +1,41 @@
 {
-  "rewrites": [
-    {
-      "source": "**",
-      "destination": "/index.html"
-    }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "headers": [
-    {
-      "source": "**/*.!(html)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "max-age=31536000, public"
-        }
-      ]
-    },
-    {
-      "source": "content/**/*.*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "max-age=3600, public"
-        }
-      ]
-    },
-    {
-      "source": "serviceWorker.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "max-age=86400, public"
-        }
-      ]
-    }
-  ]
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.!(html)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000, public"
+          }
+        ]
+      },
+      {
+        "source": "content/**/*.*",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600, public"
+          }
+        ]
+      },
+      {
+        "source": "serviceWorker.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400, public"
+          }
+        ]
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
 }
