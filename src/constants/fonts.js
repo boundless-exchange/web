@@ -32,6 +32,12 @@ export const COPY = {
   fontSize: SIZES.COPY,
 };
 
+export const ASIDE = {
+  fontFamily: 'Fela-Light',
+  lineHeight: 1.45,
+  fontSize: SIZES.COPY,
+};
+
 export const HEADING = {
   1: {
     ...compactHeader(SIZES.HEADING[1]),

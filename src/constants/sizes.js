@@ -8,6 +8,7 @@ export const SPACING = {
 };
 
 export const BORDER = {
+  NORMAL: 2,
   THICK: 4,
 };
 

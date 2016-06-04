@@ -3,7 +3,7 @@ import { PropTypes } from 'react';
 import { StyleSheet } from 'react-look';
 import { connect } from 'react-redux';
 
-import { BaseComponent, Button, Heading, Raised } from '../components';
+import { BaseComponent, Button, Heading, Notice, Raised } from '../components';
 import { sizes } from '../constants';
 import * as interactions from '../interactions';
 
@@ -25,6 +25,11 @@ const STYLES = StyleSheet.create({
   title: {
     whiteSpace: 'nowrap',
     padding: sizes.SPACING.NORMAL,
+    paddingBottom: 0,
+  },
+  notice: {
+    padding: sizes.SPACING.NORMAL,
+    paddingTop: sizes.SPACING.NORMAL * 2,
     paddingBottom: 0,
   },
   content: {
@@ -77,6 +82,11 @@ export default class ArticlesScene extends BaseComponent {
             Edit
           </Button>
         </div>
+        {page.metadata.notice &&
+          <Raised depth={2} className={STYLES.notice}>
+            <Notice type={page.metadata.notice} />
+          </Raised>
+        }
         <Raised depth={1} className={STYLES.content}>
           <page.default />
         </Raised>
