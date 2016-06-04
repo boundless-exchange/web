@@ -5,5 +5,5 @@
  */
 export default {
   optimize: true,
-  firebaseProject: 'boundless-exchange',
+  firebaseProject: 'firebase-boundless-exchange',
 };
