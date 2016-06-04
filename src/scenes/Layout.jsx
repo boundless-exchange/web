@@ -157,9 +157,8 @@ export default class Layout extends BaseComponent {
 
   @rendering.throttle(threedee.EXPENSIVE_PERSPECTIVE ? 250 : 0)
   _updatePerspective() {
-    const html = document.documentElement;
-    const x = html.clientWidth / 2 + window.scrollX;
-    const y = html.clientHeight / 2 + window.scrollY;
+    const x = this._root.clientWidth / 2 + window.scrollX;
+    const y = window.innerHeight / 2 + window.scrollY;
     this._root.style.perspectiveOrigin = `${x}px ${y}px`;
     if (threedee.ROTATION) {
       this._root.style.transformOrigin = `${x}px ${y}px ${sizes.DEPTH * 2}px`;
