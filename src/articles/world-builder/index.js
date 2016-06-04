@@ -12,7 +12,11 @@ export const guide = {
 export const reference = {
   title: `Reference`,
   load() {
-    return Promise.reject(new Error(`Not implemented yet`));
+    return new Promise((resolve, _reject) => {
+      require.ensure([], require => {
+        resolve(require('./reference').default);
+      }, 'world-builder/reference');
+    });
   },
 };
 
