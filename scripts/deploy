@@ -10,6 +10,6 @@ fi
 ./scripts/build
 
 firebase --non-interactive deploy \
-  --firebase "${config_firebaseProject}" \
+  --project "${config_firebaseProject}" \
   --public "build/${config_variant}" \
   --message $(git rev-parse HEAD)
