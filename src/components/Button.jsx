@@ -77,6 +77,7 @@ const STYLES = StyleSheet.create({
     },
   },
   contentInner: {
+    transform: `translateZ(${sizes.DEPTH * 0.05}px)`,
     'inline=false': {
       ...fonts.HEADING[6],
     },
